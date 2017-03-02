@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="55d0147af2347290df0b9ae24a81172c90d3e738" datatype="html">
+        <source>Local State</source>
+        <target>Local<target/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

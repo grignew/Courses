@@ -11,8 +11,10 @@ import { CoursesComponent } from './courses.component';
 import { LogoComponent } from './logo/logo.component';
 import { CourseSearchComponent } from './course-search/course-search.component';
 import { CourseItemComponent } from './course/course-item/course-item.component';
-import { CopyrightComponent } from './copyright/copyright.component';
+import { FooterComponent } from './footer/footer.component';
 import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
+import { LoginComponent }    from './login/login.component';
+import { HeaderComponent }    from './header/header.component';
 
 @NgModule({
 	declarations: [
@@ -20,8 +22,10 @@ import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 		LogoComponent,
 		CourseSearchComponent,
 		CourseItemComponent,
-		CopyrightComponent,
-		BreadCrumbComponent
+		FooterComponent,
+		BreadCrumbComponent,
+		LoginComponent,
+		HeaderComponent
 	],
 	imports: [
 		routes,

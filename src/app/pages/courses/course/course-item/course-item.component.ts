@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Course } from '../../models';
 
 @Component({
 	selector: 'course-item',
@@ -8,7 +9,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 	encapsulation: ViewEncapsulation.None
 })
 export class CourseItemComponent {
-	@Input() public course: any;
+	@Input() public course: Course;
 
 	constructor() {
 	}

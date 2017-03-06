@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Course } from './models';
 
 @Component({
 	selector: 'courses',
@@ -8,7 +9,7 @@ import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 	template: require('./courses.template.html')
 })
 export class CoursesComponent implements OnInit, OnDestroy {
-	public courseList = [
+	public courseList: Course[] = [
 		{
 			name: 'Video course 1',
 			description: 'test course',

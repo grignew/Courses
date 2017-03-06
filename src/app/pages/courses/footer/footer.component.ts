@@ -1,13 +1,13 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
 
 @Component({
-	selector: 'copyright',
-	templateUrl: 'copyright.component.html',
-	styles: [require('./copyright.component.scss')],
+	selector: 'footer',
+	templateUrl: 'footer.component.html',
+	styles: [require('./footer.component.scss')],
 	providers: [],
 	encapsulation: ViewEncapsulation.None
 })
-export class CopyrightComponent {
+export class FooterComponent {
 
 	constructor() {
 	}

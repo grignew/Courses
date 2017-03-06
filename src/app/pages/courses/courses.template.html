@@ -1,9 +1,8 @@
 <div class="courses">
-    <courselogo></courselogo>
-    <course-search></course-search>
+    <header></header>
     <div class="course-list">
 		<course-item *ngFor="let course of courseList" [course]="course"></course-item>
 	</div>
 	<div *ngIf="isLoading">Is loading...</div>
-    <copyright></copyright>
+    <footer></footer>
 </div>

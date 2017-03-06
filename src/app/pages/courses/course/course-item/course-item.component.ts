@@ -3,7 +3,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 @Component({
 	selector: 'course-item',
 	templateUrl: 'course-item.component.html',
-	 styles: [require('./course-item.component.scss')],
+	styles: [require('./course-item.component.scss')],
 	providers: [],
 	encapsulation: ViewEncapsulation.None
 })

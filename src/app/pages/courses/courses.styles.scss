@@ -1,0 +1,27 @@
+.courses {
+    font-size: 20px;
+}
+
+
+.coursepanel {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding: 10px;
+    width: 100%;
+    margin-top: 10px;
+
+    &.no-border {
+        border: none;
+    }
+}
+
+.buffer-padding {
+    padding-top: 10px;
+}
+.pull-right{
+    float: right;
+}
+.text-right {
+    text-align: right;
+}

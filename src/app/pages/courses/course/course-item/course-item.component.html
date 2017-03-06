@@ -1,0 +1,18 @@
+<div class="coursepanel">
+	<div class="row">
+		<div class="col-md-10">
+			<div class="row">
+				<span class="col-md-4">{{course.name}}</span>
+				<span class="col-md-4">{{getTime(course.duration)}}</span>
+				<span class="col-md-4 text-right">{{course.date | date : 'MM/dd/yyyy'}}</span>
+			</div>
+			<div class="row">
+				<pre class="col-md-12">{{course.description}}</pre>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<button class="pull-right button" id="editcourse">Edit course</button>
+			<button class="pull-right button" id="deletecourse">Delete</button>
+		</div>
+	</div>
+</div>

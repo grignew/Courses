@@ -24,21 +24,15 @@ import { AppComponent } from './app.component';
 import { NoContentComponent } from './pages/no-content';
 
 // Components
-import { HeaderModule, FooterModule } from './core/components';
 
 // Pages
-import { HomeModule } from './pages/home';
-import { PageOneModule } from  './pages/page-one';
-import { PageTwoModule } from  './pages/page-two';
 import { CoursesModule } from './pages/courses';
 
 // Services
 
-import { TodoService } from './core/services';
 
 // Application wide providers
 const APP_PROVIDERS = [
-	TodoService
 ];
 
 /**
@@ -55,11 +49,6 @@ const APP_PROVIDERS = [
 		FormsModule,
 		HttpModule,
 		RouterModule.forRoot(ROUTES, {useHash: true, preloadingStrategy: PreloadAllModules}),
-		HeaderModule,
-		FooterModule,
-		HomeModule,
-		PageOneModule,
-		PageTwoModule,
 		CoursesModule
 	],
 	providers: [ // expose our Services and Providers into Angular's dependency injection

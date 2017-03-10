@@ -1,7 +1,7 @@
 <div class="courses">
     <header></header>
     <div class="course-list">
-		<course-item *ngFor="let course of courseList" [course]="course"></course-item>
+		<course-item *ngFor="let course of courseList" [course]="course" (onDeleteCourseEvent)="onDeleteCourse($event)"></course-item>
 	</div>
 	<div *ngIf="isLoading">Is loading...</div>
     <footer></footer>

@@ -30,7 +30,6 @@ import { CoursesModule } from './pages/courses';
 
 // Services
 
-
 // Application wide providers
 const APP_PROVIDERS = [
 ];

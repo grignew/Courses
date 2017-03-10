@@ -8,8 +8,12 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 	encapsulation: ViewEncapsulation.None
 })
 export class CourseSearchComponent {
- 	// @Input() public todo: LogoItem;
+	public findCourse: string;
 
 	constructor() {
+	}
+
+	public onSearch() {
+		console.log(this.findCourse);
 	}
 }

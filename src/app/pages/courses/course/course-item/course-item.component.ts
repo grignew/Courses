@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
 import { Course } from '../../models';
 
 @Component({
@@ -10,11 +10,16 @@ import { Course } from '../../models';
 })
 export class CourseItemComponent {
 	@Input() public course: Course;
+	@Output() public onDeleteCourseEvent = new EventEmitter<Course>();
 
 	constructor() {
 	}
 
 	public getTime(duration: number): string {
 		return `${Math.trunc(duration / 3600)}h ${(duration % 3600) / 60}min`;
+	}
+
+	public onDeleteCourse() {
+		this.onDeleteCourseEvent.emit(this.course);
 	}
 }

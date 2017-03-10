@@ -13,6 +13,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
 	constructor() {
 		console.log('Courses constructor');
+		this.courseList = < Course[] > [];
 	}
 
 	public ngOnInit() {

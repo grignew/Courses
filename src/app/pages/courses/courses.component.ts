@@ -43,11 +43,36 @@ export class CoursesComponent implements OnInit, OnDestroy {
 						];
 }
 
-	public ngOnDestroy() {
-		// unsubscribe here
-	}
-
 	public onDeleteCourse(course) {
 		console.log(`Delete Course ${course.name}!`);
+	}
+
+	public ngOnDestroy() {
+		// unsubscribe here
+		console.log('ngOnDestroy');
+	}
+
+	public ngOnChanges() {
+		console.log('ngOnChanges');
+	}
+
+	public ngDoCheck() {
+		console.log('ngDoCheck');
+	}
+
+	public ngAfterContentInit() {
+		console.log('ngAfterContentInit');
+	}
+
+	public ngAfterContentChecked() {
+		console.log('ngAfterContentChecked');
+	}
+
+	public ngAfterViewInit() {
+		console.log('ngAfterViewInit');
+	}
+
+	public ngAfterViewChecked() {
+		console.log('ngAfterViewChecked');
 	}
 }

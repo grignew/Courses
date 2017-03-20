@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { AuthService } from '../services/auth.service';
 
 @Component({
 	selector: 'courselogo',
@@ -9,7 +10,12 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 })
 export class LogoComponent {
  	// @Input() public todo: LogoItem;
+	// public isAuth: boolean = true;
 
-	constructor() {
+	constructor(private authService: AuthService) {
+	}
+
+	public onLogoff() {
+		this.authService.Logout();
 	}
 }

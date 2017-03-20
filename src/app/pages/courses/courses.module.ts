@@ -15,6 +15,11 @@ import { FooterComponent } from './footer/footer.component';
 import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import { LoginComponent }    from './login/login.component';
 import { HeaderComponent }    from './header/header.component';
+import { DeleteConfirmDialogComponent } from './course/course-conf/course.delete.conf.component';
+
+// services
+import { CourseService } from './services/course.maintain.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
 	declarations: [
@@ -25,7 +30,8 @@ import { HeaderComponent }    from './header/header.component';
 		FooterComponent,
 		BreadCrumbComponent,
 		LoginComponent,
-		HeaderComponent
+		HeaderComponent,
+		DeleteConfirmDialogComponent
 	],
 	imports: [
 		routes,
@@ -33,7 +39,7 @@ import { HeaderComponent }    from './header/header.component';
 		ReactiveFormsModule,
 		CommonModule
 	],
-	providers: []
+	providers: [CourseService, AuthService]
 })
 export class CoursesModule {
 	constructor() {

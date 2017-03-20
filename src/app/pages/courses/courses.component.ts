@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { Course } from './models';
+import { CourseService } from './services/course.maintain.service';
+import { AuthService } from './services/auth.service';
 
 @Component({
 	selector: 'courses',
@@ -9,42 +11,30 @@ import { Course } from './models';
 	template: require('./courses.template.html')
 })
 export class CoursesComponent implements OnInit, OnDestroy {
-	public courseList: Course[];
+	public isShownDeleteConfirmation: boolean;
+	private deleteCourse: Course;
 
-	constructor() {
+	constructor(
+				private courseService: CourseService,
+				private authService: AuthService) {
 		console.log('Courses constructor');
-		this.courseList = < Course[] > [];
 	}
 
 	public ngOnInit() {
 		console.log('Courses init');
-		this.courseList = [
-							{
-								id: 1,
-								name: 'Video course 1',
-								description: 'test course',
-								duration: 3780,
-								date: 1488796606004
-							},
-							{
-								id: 2,
-								name: 'Video course 2',
-								description: 'test course 1',
-								duration: 480,
-								date: 1487796606004
-							},
-							{
-								id: 3,
-								name: 'Video course 3',
-								description: 'test course 2',
-								duration: 480,
-								date: 1477796606004
-							}
-						];
-}
+	}
 
-	public onDeleteCourse(course) {
+	public onDeleteCourse(course: Course) {
 		console.log(`Delete Course ${course.name}!`);
+		this.deleteCourse = course;
+		this.isShownDeleteConfirmation = true;
+	}
+
+	public onDeleteConfirmationCourse(isConfirmDelete: boolean) {
+		if (isConfirmDelete) {
+			this.courseService.removeItem(this.deleteCourse.id);
+		}
+		this.isShownDeleteConfirmation = false;
 	}
 
 	public ngOnDestroy() {

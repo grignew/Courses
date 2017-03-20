@@ -1,7 +1,8 @@
 <div class="courses">
 	<header></header>
 	<div class="course-list">
-		<course-item *ngFor="let course of courseList" [course]="course" (onDeleteCourseEvent)="onDeleteCourse($event)"></course-item>
+		<course-item *ngFor="let course of this.courseService.getList()" [course]="course" (onDeleteCourseEvent)="onDeleteCourse($event)"></course-item>
 	</div>
+	<delete-conf *ngIf="isShownDeleteConfirmation" (onDeleteConfirmationCourseEvent)="onDeleteConfirmationCourse($event)"></delete-conf>
 	<footer></footer>
 </div>

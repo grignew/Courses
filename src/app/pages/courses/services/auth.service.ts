@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Observer, Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
@@ -28,7 +29,7 @@ export class AuthService {
 		return this.isAuth;
 	}
 
-	public GetUserInfo(): string {
-		return this.userName;
+	public GetUserInfo(): Observable<string> {
+		return Observable.of(this.userName);
 	}
 }

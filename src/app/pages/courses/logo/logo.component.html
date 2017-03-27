@@ -8,7 +8,7 @@
             <bread-crumb *ngIf="authService.IsAuthenticated()"></bread-crumb>
         </div>
         <div class="col-md-6 text-right" *ngIf="authService.IsAuthenticated()">
-            <div>{{authService.GetUserInfo()}}</div>
+            <div>{{userInfo}}</div>
             <div><a routerLink="/login" (click)="onLogoff()">logoff</a></div>
         </div>
     </div>

@@ -4,7 +4,7 @@
 import {
 	Component,
 	OnInit,
-	ViewEncapsulation
+	ViewEncapsulation, NgZone
 } from '@angular/core';
 import { AppState } from './app.service';
 
@@ -24,10 +24,18 @@ import { AppState } from './app.service';
 })
 export class AppComponent implements OnInit {
 
-	constructor() {
+	private timeDif: number;
+
+	constructor(private ngZone: NgZone) {
 	}
 
 	public ngOnInit() {
+		this.ngZone.onStable.subscribe(() => {
+			console.log(`${((Date.now() - this.timeDif) % 3600) / 60 / 60}sek`);
+		});
+		this.ngZone.onUnstable.subscribe(() => {
+			this.timeDif = Date.now();
+		});
 	}
 
 }

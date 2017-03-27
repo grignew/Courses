@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../models';
 
 @Component({
@@ -6,7 +6,8 @@ import { Course } from '../../models';
 	templateUrl: 'course-item.component.html',
 	styles: [require('./course-item.component.scss')],
 	providers: [],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CourseItemComponent {
 	@Input() public course: Course;

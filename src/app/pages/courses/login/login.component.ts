@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -6,7 +6,8 @@ import { AuthService } from '../services/auth.service';
 	templateUrl: 'login.component.html',
 	styles: [require('./login.component.scss')],
 	providers: [],
-	encapsulation: ViewEncapsulation.None
+	encapsulation: ViewEncapsulation.None,
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent {
 	public userName: string;

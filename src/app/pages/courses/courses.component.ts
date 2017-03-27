@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from './models';
 import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
@@ -8,10 +8,12 @@ import { AuthService } from './services/auth.service';
 	encapsulation: ViewEncapsulation.None,
 	providers: [],
 	styles: [require('./courses.styles.scss')],
-	template: require('./courses.template.html')
+	template: require('./courses.template.html'),
+	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CoursesComponent implements OnInit, OnDestroy {
 	public isShownDeleteConfirmation: boolean;
+	public courseList: Course[];
 	private deleteCourse: Course;
 
 	constructor(
@@ -22,6 +24,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
 	public ngOnInit() {
 		console.log('Courses init');
+		this.courseList = this.courseService.getList();
 	}
 
 	public onDeleteCourse(course: Course) {

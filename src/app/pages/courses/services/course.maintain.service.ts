@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { Observable } from 'rxjs/Observable';
 import { Course } from './../models';
 import { Courses } from './mock.courses';
 
@@ -29,8 +29,15 @@ export class CourseService {
 								course);
 	}
 
-	public removeItem(id: number) {
-		this.courseList.splice(this.courseList.findIndex((course) => course.id === id), 1);
+	public removeItem(id: number): Observable<boolean> {
+		return Observable.create((observer) => {
+			setTimeout(() => {
+				this.courseList.splice(
+				this.courseList.findIndex((course) => course.id === id), 1);
+				observer.next(true);
+				observer.complete();
+			}, 2000);
+		});
 	}
 
 }

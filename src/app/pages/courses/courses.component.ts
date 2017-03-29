@@ -1,7 +1,10 @@
-import { Component, ViewEncapsulation, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Course } from './models';
+import { Subscription, Observer } from 'rxjs/Rx';
 import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
+import { LoadRunnerService } from './services/loadrunner.service';
 
 @Component({
 	selector: 'courses',
@@ -13,18 +16,27 @@ import { AuthService } from './services/auth.service';
 })
 export class CoursesComponent implements OnInit, OnDestroy {
 	public isShownDeleteConfirmation: boolean;
+	public isLoadRunnerShow: boolean = false;
 	public courseList: Course[];
 	private deleteCourse: Course;
+	private loadRunnerServiceSubscriber: Subscription;
 
 	constructor(
 				private courseService: CourseService,
-				private authService: AuthService) {
+				private authService: AuthService,
+				private loadRunnerService: LoadRunnerService,
+				private cdRef: ChangeDetectorRef
+				) {
 		console.log('Courses constructor');
 	}
 
 	public ngOnInit() {
 		console.log('Courses init');
 		this.courseList = this.courseService.getList();
+		this.loadRunnerServiceSubscriber = this.loadRunnerService.isShow.subscribe((data) => {
+			this.isLoadRunnerShow = data;
+			this.cdRef.markForCheck();
+		});
 	}
 
 	public onDeleteCourse(course: Course) {
@@ -35,13 +47,16 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
 	public onDeleteConfirmationCourse(isConfirmDelete: boolean) {
 		if (isConfirmDelete) {
-			this.courseService.removeItem(this.deleteCourse.id);
+			this.loadRunnerService.Show();
+			this.courseService.removeItem(this.deleteCourse.id)
+							.subscribe((data) => {if (data) {this.loadRunnerService.Hide(); } });
 		}
 		this.isShownDeleteConfirmation = false;
 	}
 
 	public ngOnDestroy() {
 		// unsubscribe here
+		this.loadRunnerServiceSubscriber.unsubscribe();
 		console.log('ngOnDestroy');
 	}
 

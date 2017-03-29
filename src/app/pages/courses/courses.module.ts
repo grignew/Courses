@@ -16,10 +16,12 @@ import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import { LoginComponent }    from './login/login.component';
 import { HeaderComponent }    from './header/header.component';
 import { DeleteConfirmDialogComponent } from './course/course-conf/course.delete.conf.component';
+import { LoadRunnerComponent } from './load-runner/load-runner.component';
 
 // services
 import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
+import { LoadRunnerService } from './services/loadrunner.service';
 
 @NgModule({
 	declarations: [
@@ -31,7 +33,8 @@ import { AuthService } from './services/auth.service';
 		BreadCrumbComponent,
 		LoginComponent,
 		HeaderComponent,
-		DeleteConfirmDialogComponent
+		DeleteConfirmDialogComponent,
+		LoadRunnerComponent
 	],
 	imports: [
 		routes,
@@ -39,7 +42,7 @@ import { AuthService } from './services/auth.service';
 		ReactiveFormsModule,
 		CommonModule
 	],
-	providers: [CourseService, AuthService]
+	providers: [CourseService, AuthService, LoadRunnerService]
 })
 export class CoursesModule {
 	constructor() {

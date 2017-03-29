@@ -8,6 +8,7 @@
     <label for="password">Password</label>
     <input name="password" type="password" class="form-control" id="password" placeholder="Password">
   </div>
-  <button type="submit" class="btn btn-default" routerLink="/courses" (click)="onLogin()">Login</button>
+  <button type="submit" class="btn btn-default" (click)="onLogin()">Login</button>
+  <load-runner *ngIf="isLoadRunnerShow"></load-runner>
 </form>
 <footer></footer>

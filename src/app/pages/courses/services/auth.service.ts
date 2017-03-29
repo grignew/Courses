@@ -10,11 +10,16 @@ export class AuthService {
 		this.userName = localStorage.getItem('userName');
 	}
 
-	public Login(userName: string) {
-		this.isAuth = true;
-		localStorage.setItem('userName', userName);
-		this.userName = userName;
-		// console.log(`Login=${this.isAuth}`);
+	public Login(userName: string): Observable<boolean> {
+		return Observable.create((observer) => {
+			setTimeout(() => {
+				this.isAuth = true;
+				localStorage.setItem('userName', userName);
+				this.userName = userName;
+				observer.next(true);
+				observer.complete();
+			}, 2000);
+		});
 	}
 
 	public Logout() {

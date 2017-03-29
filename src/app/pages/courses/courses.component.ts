@@ -23,7 +23,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 
 	constructor(
 				private courseService: CourseService,
-				private authService: AuthService,
+				// private authService: AuthService,
 				private loadRunnerService: LoadRunnerService,
 				private cdRef: ChangeDetectorRef
 				) {

@@ -1,3 +1,11 @@
+.loaderbackground {
+    background-color:rgba(0,0,0,.3);
+    height:100%;
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+}
 .loader {
   color: blue;
   font-size: 90px;
@@ -7,6 +15,7 @@
   height: 1em;
   border-radius: 50%;
   margin: 72px auto;
+  margin-top: 250px;
   position: relative;
   -webkit-transform: translateZ(0);
   -ms-transform: translateZ(0);

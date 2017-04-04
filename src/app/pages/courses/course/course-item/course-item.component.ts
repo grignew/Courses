@@ -16,10 +16,6 @@ export class CourseItemComponent {
 	constructor() {
 	}
 
-	public getTime(duration: number): string {
-		return `${Math.trunc(duration / 3600)}h ${(duration % 3600) / 60}min`;
-	}
-
 	public onDeleteCourse() {
 		this.onDeleteCourseEvent.emit(this.course);
 	}

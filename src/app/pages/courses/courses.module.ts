@@ -23,6 +23,11 @@ import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
 import { LoadRunnerService } from './services/loadrunner.service';
 
+// directives
+import { CourseBorderDirective } from './directives/course.border.directive';
+import { CourseDurationPipe } from './pipes/course.duration.pipe';
+import { CourseSortPipe } from './pipes/course.sort.pipe';
+
 @NgModule({
 	declarations: [
 		CoursesComponent,
@@ -34,7 +39,10 @@ import { LoadRunnerService } from './services/loadrunner.service';
 		LoginComponent,
 		HeaderComponent,
 		DeleteConfirmDialogComponent,
-		LoadRunnerComponent
+		LoadRunnerComponent,
+		CourseBorderDirective,
+		CourseDurationPipe,
+		CourseSortPipe
 	],
 	imports: [
 		routes,

@@ -1,10 +1,11 @@
-<div class="coursepanel">
+<div [ngClass]="{'coursepanel':true, 'top-rated':course.topRated}" courseBorder [courseBorderSet]="course.date">
 	<div class="row">
 		<div class="col-md-10">
 			<div class="row">
-				<span class="col-md-4">{{course.name}}</span>
-				<span class="col-md-4">{{getTime(course.duration)}}</span>
-				<span class="col-md-4 text-right">{{course.date | date : 'MM/dd/yyyy'}}</span>
+				<span class="col-md-3">{{course.name | uppercase}}</span>
+				<span class="col-md-3">{{course.duration | myCourseDuration:course.duration}}</span>
+				<span class="col-md-3 text-right">{{course.date | date : 'MM/dd/yyyy'}}</span>
+				<span *ngIf="course.topRated" class="col-md-3 star-rate"><i class="material-icons">star</i></span>
 			</div>
 			<div class="row">
 				<pre class="col-md-12">{{course.description}}</pre>

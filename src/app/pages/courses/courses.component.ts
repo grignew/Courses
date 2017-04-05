@@ -5,6 +5,7 @@ import { Subscription, Observer } from 'rxjs/Rx';
 import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
 import { LoadRunnerService } from './services/loadrunner.service';
+import { CourseSearchComponent } from './course-search/course-search.component';
 
 @Component({
 	selector: 'courses',
@@ -20,6 +21,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 	public courseList: Course[];
 	private deleteCourse: Course;
 	private loadRunnerServiceSubscriber: Subscription;
+	private courseServiceFilterSubscriber: Subscription;
 
 	constructor(
 				private courseService: CourseService,
@@ -35,6 +37,11 @@ export class CoursesComponent implements OnInit, OnDestroy {
 		this.courseList = this.courseService.getList();
 		this.loadRunnerServiceSubscriber = this.loadRunnerService.isShow.subscribe((data) => {
 			this.isLoadRunnerShow = data;
+			this.cdRef.markForCheck();
+		});
+		this.courseServiceFilterSubscriber = this.courseService.getFilterCourses.subscribe((data) => {
+			console.log(data);
+			this.courseList = data;
 			this.cdRef.markForCheck();
 		});
 	}
@@ -57,6 +64,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 	public ngOnDestroy() {
 		// unsubscribe here
 		this.loadRunnerServiceSubscriber.unsubscribe();
+		this.courseServiceFilterSubscriber.unsubscribe();
 		console.log('ngOnDestroy');
 	}
 

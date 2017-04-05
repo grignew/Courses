@@ -1,4 +1,7 @@
 import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
+import { CourseFilterPipe } from '../pipes/course.filter.pipe';
+import { Observable, Observer, Subject } from 'rxjs/Rx';
+import { CourseService } from '../services/course.maintain.service';
 
 @Component({
 	selector: 'course-search',
@@ -10,11 +13,20 @@ import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@a
 })
 export class CourseSearchComponent {
 	public findCourse: string;
+	private courseFilter = new CourseFilterPipe();
 
-	constructor() {
+	constructor(private courseService: CourseService) {
 	}
 
 	public onSearch() {
-		console.log(this.findCourse);
+		this.courseService.filterCourses(
+			this.courseFilter.transform(this.courseService.getList(), this.findCourse));
+		console.log('onSearch = ' + this.findCourse);
+	}
+
+	public runOnEmpty() {
+		if (this.findCourse.length === 0) {
+			this.onSearch();
+		}
 	}
 }

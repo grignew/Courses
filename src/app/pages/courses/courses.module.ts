@@ -27,6 +27,7 @@ import { LoadRunnerService } from './services/loadrunner.service';
 import { CourseBorderDirective } from './directives/course.border.directive';
 import { CourseDurationPipe } from './pipes/course.duration.pipe';
 import { CourseSortPipe } from './pipes/course.sort.pipe';
+import { CourseFilterPipe } from './pipes/course.filter.pipe';
 
 @NgModule({
 	declarations: [
@@ -42,7 +43,8 @@ import { CourseSortPipe } from './pipes/course.sort.pipe';
 		LoadRunnerComponent,
 		CourseBorderDirective,
 		CourseDurationPipe,
-		CourseSortPipe
+		CourseSortPipe,
+		CourseFilterPipe
 	],
 	imports: [
 		routes,

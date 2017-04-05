@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subject } from 'rxjs/Rx';
 import { Course } from './../models';
 import { Courses } from './mock.courses';
 
 @Injectable()
 export class CourseService {
 	private courseList: Course[];
+	private filteredCourses: Subject<Course[]> = new Subject();
 
 	constructor() {
 		this.courseList = Courses;
@@ -40,4 +41,11 @@ export class CourseService {
 		});
 	}
 
+	public get getFilterCourses(): Observable<Course[]> {
+		return this.filteredCourses;
+	}
+	public filterCourses(courses: Course[]) {
+		console.log('method filterCourses = ' + courses);
+		return this.filteredCourses.next(courses);
+	}
 }

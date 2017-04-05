@@ -56,7 +56,10 @@ export class CoursesComponent implements OnInit, OnDestroy {
 		if (isConfirmDelete) {
 			this.loadRunnerService.Show();
 			this.courseService.removeItem(this.deleteCourse.id)
-							.subscribe((data) => {if (data) {this.loadRunnerService.Hide(); } });
+							.subscribe((data) => {if (data) {
+								this.loadRunnerService.Hide();
+								this.courseService.filterCourses(this.courseService.getList()); }
+							});
 		}
 		this.isShownDeleteConfirmation = false;
 	}

@@ -19,8 +19,9 @@ export class CourseSearchComponent {
 	}
 
 	public onSearch() {
-		this.courseService.filterCourses(
-			this.courseFilter.transform(this.courseService.getList(), this.findCourse));
+		this.courseService.filterString = this.findCourse;
+		this.courseService.filterCourses(this.findCourse
+			/*this.courseFilter.transform(this.courseService.getList(), this.findCourse)*/);
 		console.log('onSearch = ' + this.findCourse);
 	}
 

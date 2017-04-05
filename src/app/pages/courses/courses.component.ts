@@ -58,7 +58,7 @@ export class CoursesComponent implements OnInit, OnDestroy {
 			this.courseService.removeItem(this.deleteCourse.id)
 							.subscribe((data) => {if (data) {
 								this.loadRunnerService.Hide();
-								this.courseService.filterCourses(this.courseService.getList()); }
+								this.courseService.filterCourses(/*this.courseService.getList()*/''); }
 							});
 		}
 		this.isShownDeleteConfirmation = false;

@@ -10,8 +10,22 @@
 .star-rate {
     color: gold;
 }
+.edit-button {
+    background-color: blanchedalmond;
+}
+.delete-button {
+    background-color: red;
+}
+.add-button {
+    background-color: greenyellow;
+}
+.find-button {
+    background-color: blanchedalmond;
+    margin-left: 5px;
+}
 .coursepanel {
     border-style: solid;
+    border-radius: 5px;
     border-width: 2px;
     border-color: black;
     padding: 10px;

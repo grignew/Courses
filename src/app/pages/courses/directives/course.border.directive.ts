@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, Renderer } from '@angular/core';
 import moment from 'moment';
 
 @Directive({
@@ -10,14 +10,15 @@ export class CourseBorderDirective {
 		console.log(`${courseDate} > ${Date.now()}`);
 		if (courseDate >= moment().subtract(14, 'days').unix() * 1000) {
 			console.log(`${courseDate} >= ${moment().subtract(14, 'days').unix() * 1000}`);
-			this.el.nativeElement.style.borderColor = 'green';
+			this.renderer.setElementClass(this.el.nativeElement, 'current-course', true);
 		}
 		if (courseDate > Date.now()) {
 			console.log(`${courseDate} > ${Date.now()}`);
-			this.el.nativeElement.style.borderColor = 'blue';
+			this.renderer.setElementClass(this.el.nativeElement, 'future-course', true);
 		}
 	}
 
-	constructor(private el: ElementRef) {
+	constructor(private el: ElementRef,
+				private renderer: Renderer) {
 	}
 }

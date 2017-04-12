@@ -20,6 +20,7 @@ export class AddCourseComponent implements AfterViewInit {
 
 	public onCancel() {
 		console.log('cancel course');
+		this.breadCrumbService.removeBreadCrumb('Add Course');
 	}
 
 	public onDurationKeyDown(event: KeyboardEvent) {

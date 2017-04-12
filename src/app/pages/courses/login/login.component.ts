@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { LoadRunnerService } from '../services/loadrunner.service';
 import { Subscription, Observer } from 'rxjs/Rx';
 import { Router } from '@angular/router';
+import { BreadCrumbService } from '../services/breadcrumb.service';
 
 @Component({
 	selector: 'login',
@@ -22,7 +23,8 @@ export class LoginComponent implements  OnInit, OnDestroy {
 		private authService: AuthService,
 		private loadRunnerService: LoadRunnerService,
 		private cdRef: ChangeDetectorRef,
-		private router: Router) {
+		private router: Router,
+		private breadCrumbService: BreadCrumbService) {
 	}
 
 	public onLogin() {

@@ -5,10 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CourseDurationPipe implements PipeTransform {
 	public transform(duration: number) {
-		if (Math.trunc(duration / 3600) === 0) {
-			return `${(duration % 3600) / 60}min`;
+		if (isNaN(duration)) {
+			return '';
+		}
+		if (duration < 60) {
+			return `${duration }min`;
 		}else {
-			return `${Math.trunc(duration / 3600)}h ${(duration % 3600) / 60}min`;
+			return `${Math.trunc(duration / 60)}h ${Math.round(duration % 60) }min`;
 		}
 	}
 }

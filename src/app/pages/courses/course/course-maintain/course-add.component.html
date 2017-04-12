@@ -1,0 +1,38 @@
+<div class="courses">
+	<courselogo></courselogo>
+	<form>
+		<div class="form-group row"></div>
+		<div class="form-group row">
+			<label for="title" class="col-sm-5 col-form-label text-right">Title</label>
+			<div class="col-sm-3">
+				<input type="text" class="form-control" id="title" placeholder="Title">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="description" class="col-sm-5 col-form-label text-right">Description</label>
+			<div class="col-sm-3">
+				<textarea type="text" class="form-control" id="description" placeholder="Description"></textarea>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="date" class="col-sm-5 col-form-label text-right">Date</label>
+			<div class="col-sm-2">
+				<input type="text" class="form-control" id="date" placeholder="Date">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label for="Duration" class="col-sm-5 col-form-label text-right">Duration</label>
+			<div class="col-sm-2">
+				<input name="duration" type="number" class="form-control" id="Duration" placeholder="min" [(ngModel)]="courseDuration" (keydown)="onDurationKeyDown($event)">
+			</div>
+			<label  class="col-sm-5 col-form-label text-left">{{courseDuration | myCourseDuration}}</label>
+		</div>
+		<div class="form-group row"></div>
+		<div class="form-group row">
+			<div class="col-sm-3 offset-sm-4">
+				<button type="submit" class="btn btn-primary" routerLink="/courses" (click)="onSave()">Save</button>
+				<button type="submit" class="btn btn-primary" routerLink="/courses" (click)="onCancel()">Cancel</button>
+			</div>
+		</div>
+	</form>
+</div>

@@ -15,8 +15,8 @@ export class CourseService {
 		this.courseList = Courses;
 	}
 
-	public getList(): Course[] {
-		return this.courseList;
+	public getList(): Observable<Course[]> {
+		return Observable.of(this.courseList);
 	}
 
 	public createCourse(course: Course) {
@@ -50,6 +50,6 @@ export class CourseService {
 	public filterCourses(filterString: string) {
 		// this.filterString = filterString;
 		console.log('method filterCourses = ' + filterString);
-		return this.filteredCourses.next(this.courseFilter.transform(this.getList(), this.filterString));
+		return this.filteredCourses.next(this.courseFilter.transform(this.courseList, this.filterString));
 	}
 }

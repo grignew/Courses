@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
+import { EventEmitter, Output } from '@angular/core';
 import { CourseFilterPipe } from '../pipes/course.filter.pipe';
 import { Observable, Observer, Subject } from 'rxjs/Rx';
 import { CourseService } from '../services/course.maintain.service';
@@ -29,5 +30,8 @@ export class CourseSearchComponent {
 		if (this.findCourse.length === 0) {
 			this.onSearch();
 		}
+	}
+
+	public onAddCourse() {
 	}
 }

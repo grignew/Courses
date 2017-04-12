@@ -1,11 +1,11 @@
 <div class="row buffer-padding">
 		<div class="col-md-6 form-inline">
 			<div class="form-group">
-			<input type="text" [(ngModel)]="findCourse" (ngModelChange)="runOnEmpty()" class="form-control" placeholder="name fragment or date">
+			<input type="text" [(ngModel)]="findCourse" (ngModelChange)="runOnEmpty()" class="form-control" placeholder="course name...">
 			</div>
 			<button id="find" class="btn btn-default find-button" (click)="onSearch()">Find</button>
 		</div>
 		<div class="col-md-6">
-			<button class="pull-right btn btn-default add-button" id="addcourse">Add course</button>
+			<button class="pull-right btn btn-default add-button" id="addcourse" routerLink="/addcourse" >Add course</button>
 		</div>
 </div>

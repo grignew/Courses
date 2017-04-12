@@ -18,7 +18,6 @@ export class CourseBorderDirective {
 		}
 	}
 
-	constructor(private el: ElementRef,
-				private renderer: Renderer) {
+	constructor(private el: ElementRef, private renderer: Renderer) {
 	}
 }

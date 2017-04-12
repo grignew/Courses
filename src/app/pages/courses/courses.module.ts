@@ -17,11 +17,13 @@ import { LoginComponent }    from './login/login.component';
 import { HeaderComponent }    from './header/header.component';
 import { DeleteConfirmDialogComponent } from './course/course-conf/course.delete.conf.component';
 import { LoadRunnerComponent } from './load-runner/load-runner.component';
+import { AddCourseComponent } from './course/course-maintain/course-add.component';
 
 // services
 import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
 import { LoadRunnerService } from './services/loadrunner.service';
+import { BreadCrumbService } from './services/breadcrumb.service';
 
 // directives
 import { CourseBorderDirective } from './directives/course.border.directive';
@@ -44,7 +46,8 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		CourseBorderDirective,
 		CourseDurationPipe,
 		CourseSortPipe,
-		CourseFilterPipe
+		CourseFilterPipe,
+		AddCourseComponent
 	],
 	imports: [
 		routes,
@@ -52,7 +55,7 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		ReactiveFormsModule,
 		CommonModule
 	],
-	providers: [CourseService, AuthService, LoadRunnerService]
+	providers: [CourseService, AuthService, LoadRunnerService, BreadCrumbService]
 })
 export class CoursesModule {
 	constructor() {

@@ -18,10 +18,11 @@ export class LoginComponent implements  OnInit, OnDestroy {
 	public isLoadRunnerShow: boolean = false;
 	private loadRunnerServiceSubscriber: Subscription;
 
-	constructor(private authService: AuthService,
-				private loadRunnerService: LoadRunnerService,
-				private cdRef: ChangeDetectorRef,
-				private router: Router) {
+	constructor(
+		private authService: AuthService,
+		private loadRunnerService: LoadRunnerService,
+		private cdRef: ChangeDetectorRef,
+		private router: Router) {
 	}
 
 	public onLogin() {

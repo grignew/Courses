@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
+// import { BreadCrumbService } from '../services/breadcrumb.service';
 
 @Component({
 	selector: 'bread-crumb',
@@ -8,10 +9,11 @@ import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@a
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BreadCrumbComponent {
-	@Input() public breadcrumb: string;
+	@Input() public breadCrumb: string;
 
-	constructor() {
-		this.breadcrumb = 'Courses';
+	constructor(/*private breadCrumbService: BreadCrumbService*/) {
+		// this.breadcrumb = 'Courses';
+		// this.breadCrumbService.getMenuItem.subscribe((menuItem) => this.breadCrumbList = menuItem);
 	}
 
 }

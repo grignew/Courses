@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer, Subject } from 'rxjs/Rx';
+import { Observable, Observer, Subject, ReplaySubject } from 'rxjs/Rx';
 
 @Injectable()
 export class LoadRunnerService {
-	private _isShow: Subject<boolean> = new Subject();
+	private _isShow = new ReplaySubject(1); // Subject<boolean> = new Subject();
 
 	constructor() {
 	}

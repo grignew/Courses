@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, Input, Output } from '@angular/core';
+import { EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { Course } from '../../models';
 
 @Component({

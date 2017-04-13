@@ -1,1 +1,3 @@
-<i *ngIf="!isFirstItem" class="material-icons ">play_arrow</i><a class="bread-crumb" [routerLink]="[breadCrumb.path]" (click)="onClick()">{{breadCrumb.name}}</a>
+<nav class="breadcrumb">
+	<a *ngFor="let breadcrumb of breadCrumbList" class="breadcrumb-item" [routerLink]="[breadcrumb.path]" (click)="onClick($event,breadcrumb)">{{breadcrumb.name}}</a>
+</nav>

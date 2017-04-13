@@ -33,10 +33,10 @@ export class LogoComponent implements OnInit, OnDestroy {
 		this.userInfoSubsriber = this.authService.GetUserInfo().subscribe((data) => {
 			this.userInfo = data;
 		});
-		this.breadCrumbService.getMenuItem.subscribe((menuItem) => {
+		/*this.breadCrumbService.getMenuItem.subscribe((menuItem) => {
 			this.breadCrumbList = menuItem;
 			this.cdRef.markForCheck();
-		});
+		});*/
 	}
 	public ngOnDestroy() {
 		this.userInfoSubsriber.unsubscribe();

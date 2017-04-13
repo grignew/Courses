@@ -7,6 +7,7 @@ import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { BreadCrumbService } from '../services/breadcrumb.service';
+import { BreadCrumb } from '../models';
 
 @Component({
 	selector: 'courselogo',
@@ -18,7 +19,7 @@ import { BreadCrumbService } from '../services/breadcrumb.service';
 })
 export class LogoComponent implements OnInit, OnDestroy {
 	public userInfo: string;
-	public breadCrumbList: string[];
+	public breadCrumbList: BreadCrumb[];
 	private userInfoSubsriber: Subscription;
 
 	constructor(
@@ -41,6 +42,7 @@ export class LogoComponent implements OnInit, OnDestroy {
 		this.userInfoSubsriber.unsubscribe();
 	}
 	public onLogoff() {
+		this.breadCrumbService.removeAll();
 		this.authService.Logout();
 	}
 }

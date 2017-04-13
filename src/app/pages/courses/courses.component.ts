@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
 import { ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
-import { Course } from './models';
+import { Course, BreadCrumb } from './models';
 import { Subscription, Observer } from 'rxjs/Rx';
 import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
@@ -24,6 +24,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	private loadRunnerServiceSubscriber: Subscription;
 	private courseServiceFilterSubscriber: Subscription;
 	private courseServiceGetListSubscriber: Subscription;
+	private breadCrumbItem: BreadCrumb = {name: 'Courses', path: '/courses'};
 
 	constructor(
 				private courseService: CourseService,
@@ -98,7 +99,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 
 	public ngAfterViewInit() {
 		console.log('ngAfterViewInit courses');
-		this.breadCrumbService.setBreadCrumbLeaf('Courses');
+		this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 	}
 
 	// public ngAfterViewChecked() {

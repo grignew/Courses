@@ -1,1 +1,1 @@
-<a class="bread-crumb" >{{breadCrumb}}</a> >>
+<i *ngIf="!isFirstItem" class="material-icons ">play_arrow</i><a class="bread-crumb" [routerLink]="[breadCrumb.path]" (click)="onClick()">{{breadCrumb.name}}</a>

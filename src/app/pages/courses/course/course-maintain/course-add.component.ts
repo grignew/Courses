@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { BreadCrumbService } from '../../services/breadcrumb.service';
+import { BreadCrumb } from '../../models';
 
 @Component ({
 	selector: 'course-add',
@@ -10,6 +11,7 @@ import { BreadCrumbService } from '../../services/breadcrumb.service';
 })
 export class AddCourseComponent implements AfterViewInit {
 	public courseDuration: number;
+	private breadCrumbItem: BreadCrumb = { name: 'Add Course', path: '/addcourse'};
 
 	constructor(private breadCrumbService: BreadCrumbService) {
 	}
@@ -20,7 +22,7 @@ export class AddCourseComponent implements AfterViewInit {
 
 	public onCancel() {
 		console.log('cancel course');
-		this.breadCrumbService.removeBreadCrumb('Add Course');
+		this.breadCrumbService.removeBreadCrumb(this.breadCrumbItem);
 	}
 
 	public onDurationKeyDown(event: KeyboardEvent) {
@@ -32,6 +34,6 @@ export class AddCourseComponent implements AfterViewInit {
 
 	public ngAfterViewInit() {
 		console.log('ngAfterViewInit add course');
-		this.breadCrumbService.setBreadCrumbLeaf('Add Course');
+		this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 	}
 }

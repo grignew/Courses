@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
-// import { BreadCrumbService } from '../services/breadcrumb.service';
+import {  OnInit } from '@angular/core';
+import { BreadCrumbService } from '../services/breadcrumb.service';
+import { BreadCrumb } from '../models';
 
 @Component({
 	selector: 'bread-crumb',
@@ -8,12 +10,21 @@ import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@a
 	encapsulation: ViewEncapsulation.None,
 	changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BreadCrumbComponent {
-	@Input() public breadCrumb: string;
+export class BreadCrumbComponent implements OnInit {
+	@Input() public breadCrumb: BreadCrumb;
+	public isFirstItem: boolean = false;
 
-	constructor(/*private breadCrumbService: BreadCrumbService*/) {
-		// this.breadcrumb = 'Courses';
-		// this.breadCrumbService.getMenuItem.subscribe((menuItem) => this.breadCrumbList = menuItem);
+	constructor(private breadCrumbService: BreadCrumbService) {
 	}
 
+	public ngOnInit() {
+		this.breadCrumbService.getMenuItem.subscribe((menuItems) => {
+			this.isFirstItem = menuItems.indexOf(this.breadCrumb) === 0;
+		});
+	}
+
+	public onClick() {
+		console.log('onclick breadcrumb');
+		this.breadCrumbService.removeAfterCurrent(this.breadCrumb);
+	}
 }

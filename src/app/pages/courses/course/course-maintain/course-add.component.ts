@@ -12,6 +12,7 @@ import { BreadCrumb } from '../../models';
 export class AddCourseComponent implements AfterViewInit {
 	public courseDuration: number;
 	private breadCrumbItem: BreadCrumb = { name: 'Add Course', path: '/addcourse'};
+	private coursesBreadCrumbItem: BreadCrumb = {name: 'Courses', path: '/courses'};
 
 	constructor(private breadCrumbService: BreadCrumbService) {
 	}
@@ -34,6 +35,7 @@ export class AddCourseComponent implements AfterViewInit {
 
 	public ngAfterViewInit() {
 		console.log('ngAfterViewInit add course');
+		this.breadCrumbService.setBreadCrumbLeaf(this.coursesBreadCrumbItem);
 		this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 	}
 }

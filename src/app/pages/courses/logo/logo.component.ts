@@ -20,6 +20,7 @@ import { BreadCrumb } from '../models';
 export class LogoComponent implements OnInit, OnDestroy {
 	public userInfo: string;
 	public breadCrumbList: BreadCrumb[];
+	public isAuthenticated: boolean;
 	private userInfoSubsriber: Subscription;
 
 	constructor(
@@ -27,6 +28,7 @@ export class LogoComponent implements OnInit, OnDestroy {
 		private breadCrumbService: BreadCrumbService,
 		private cdRef: ChangeDetectorRef
 		) {
+			this.isAuthenticated = this.authService.IsAuthenticated();
 	}
 
 	public ngOnInit() {

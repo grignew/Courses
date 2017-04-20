@@ -3,6 +3,7 @@ import { Observable, Observer, Subject, ReplaySubject } from 'rxjs/Rx';
 import { Http, Request, RequestOptions, Headers, Response } from '@angular/http';
 import { URLSearchParams, RequestMethod } from '@angular/http';
 import { AuthUser } from './../models/auth.model';
+import { AuthorizedHttp } from './authorizedhttp.service';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,7 @@ export class AuthService {
 	private fakeToken: string = '';
 	private userInfo: AuthUser;
 
-	constructor(private http: Http) {
+	constructor(private http: AuthorizedHttp) {
 		this.fakeToken = localStorage.getItem('fakeToken');
 		this.subjectUserInfo.next(this.userInfo);
 	}
@@ -43,11 +44,7 @@ export class AuthService {
 	}
 
 	public GetUserInfo(): Observable<AuthUser> {
-		console.log(`test user info ${this.fakeToken}`);
-		let options = {
-			headers: new Headers({ Authorization: this.fakeToken})
-		};
-		return this.http.post(`${this.urlServer}/auth/userinfo`, {}, options)
+		return this.http.post(`${this.urlServer}/auth/userinfo`, {}, {})
 		.map((response) => response.json())
 		.map((user) => {
 			return new AuthUser(user);

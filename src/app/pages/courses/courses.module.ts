@@ -25,6 +25,7 @@ import { CourseService } from './services/course.maintain.service';
 import { AuthService } from './services/auth.service';
 import { LoadRunnerService } from './services/loadrunner.service';
 import { BreadCrumbService } from './services/breadcrumb.service';
+import { AuthorizedHttp } from './services/authorizedhttp.service';
 
 // directives
 import { CourseBorderDirective } from './directives/course.border.directive';
@@ -57,7 +58,7 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		CommonModule,
 		HttpModule
 	],
-	providers: [CourseService, AuthService, LoadRunnerService, BreadCrumbService]
+	providers: [CourseService, AuthService, LoadRunnerService, BreadCrumbService, AuthorizedHttp]
 })
 export class CoursesModule {
 	constructor() {

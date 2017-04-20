@@ -5,6 +5,7 @@ import { Courses } from './mock.courses';
 import { CourseFilterPipe } from '../pipes/course.filter.pipe';
 import { Http, Request, RequestOptions, Headers, Response } from '@angular/http';
 import { URLSearchParams, RequestMethod } from '@angular/http';
+import { AuthorizedHttp } from './authorizedhttp.service';
 
 @Injectable()
 export class CourseService {
@@ -17,7 +18,7 @@ export class CourseService {
 	private countCourses: number = 10;
 	private startCourses: number = 1;
 
-	constructor(private http: Http) {
+	constructor(private http: AuthorizedHttp) {
 		this.courseList = Courses;
 	}
 

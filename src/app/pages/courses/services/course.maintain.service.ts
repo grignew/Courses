@@ -56,21 +56,8 @@ export class CourseService {
 	}
 
 	public removeItem(id: number): Observable<boolean> {
-		/*let param = new URLSearchParams();
-		param.set('courseid', `${id}`);
-		let option = {
-			search: param
-		};*/
 		return this.http.delete(`${this.urlServer}/courses/${id}`, {})
 		.map((res) => true);
-		/*return Observable.create((observer) => {
-			setTimeout(() => {
-				this.courseList.splice(
-				this.courseList.findIndex((course) => course.id === id), 1);
-				observer.next(true);
-				observer.complete();
-			}, 2000);
-		});*/
 	}
 
 	public get getFilterCourses(): Observable<Course[]> {
@@ -78,7 +65,6 @@ export class CourseService {
 	}
 	public filterCourses(filterString: string) {
 		console.log('method filterCourses = ' + filterString);
-		/*this.courseFilter.transform(this.courseList, this.filterString)*/
 		this.getList().subscribe((courses) => this.filteredCourses.next(courses));
 	}
 }

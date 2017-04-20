@@ -8,6 +8,7 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { BreadCrumbService } from '../services/breadcrumb.service';
 import { BreadCrumb } from '../models';
+import { AuthUser } from './../models/auth.model';
 
 @Component({
 	selector: 'courselogo',
@@ -32,13 +33,12 @@ export class LogoComponent implements OnInit, OnDestroy {
 	}
 
 	public ngOnInit() {
-		this.userInfoSubsriber = this.authService.GetUserInfo().subscribe((data) => {
-			this.userInfo = data;
-		});
-		/*this.breadCrumbService.getMenuItem.subscribe((menuItem) => {
-			this.breadCrumbList = menuItem;
+		this.userInfoSubsriber = this.authService.GetUserInfo().subscribe((user: AuthUser) => {
+			console.log(`test User info logo ${user.name.last} ${user.name.first}`);
+			this.userInfo = `${user.name.last} ${user.name.first}`;
 			this.cdRef.markForCheck();
-		});*/
+		},
+		(err) => this.userInfo = 'Error');
 	}
 	public ngOnDestroy() {
 		this.userInfoSubsriber.unsubscribe();

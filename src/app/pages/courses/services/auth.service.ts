@@ -1,44 +1,56 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer, Subject, ReplaySubject } from 'rxjs/Rx';
+import { Http, Request, RequestOptions, Headers, Response } from '@angular/http';
+import { URLSearchParams, RequestMethod } from '@angular/http';
+import { AuthUser } from './../models/auth.model';
 
 @Injectable()
 export class AuthService {
-	private subjectUserInfo = new ReplaySubject(1);
-	private isAuth: boolean = true;
+	private subjectUserInfo = new ReplaySubject<AuthUser>(1);
 	private userName: string;
+	private urlServer = 'http://localhost:3004';
+	private fakeToken: string = '';
+	private userInfo: AuthUser;
 
-	constructor() {
-		this.userName = localStorage.getItem('userName');
-		this.subjectUserInfo.next(this.userName);
+	constructor(private http: Http) {
+		this.fakeToken = localStorage.getItem('fakeToken');
+		this.subjectUserInfo.next(this.userInfo);
 	}
 
-	public Login(userName: string): Observable<boolean> {
-		return Observable.create((observer) => {
-			setTimeout(() => {
-				this.isAuth = true;
-				localStorage.setItem('userName', userName);
-				this.userName = userName;
-				this.subjectUserInfo.next(this.userName);
-				observer.next(true);
-				observer.complete();
-			}, 2000);
+	public Login(userLogin: string, userPass: string): Observable<boolean> {
+		let body = {
+			login: userLogin,
+			password: userPass
+		};
+		return this.http.post(`${this.urlServer}/auth/login`, body, {})
+		.map((req) => {
+			this.fakeToken = req.json().token;
+			localStorage.setItem('fakeToken', this.fakeToken);
+			console.log(this.fakeToken);
+			return req.ok;
 		});
 	}
 
 	public Logout() {
-		this.isAuth = false;
-		localStorage.removeItem('userName');
+		this.fakeToken = '';
+		localStorage.removeItem('fakeToken');
 		this.userName = '';
-		this.subjectUserInfo.next(this.userName);
-		// console.log(`Logout=${this.isAuth}`);
+		this.subjectUserInfo.next(this.userInfo);
 	}
 
 	public IsAuthenticated(): boolean {
-		// console.log(`IsAuthenticated=${this.isAuth}`);
-		return this.isAuth;
+		return !!this.fakeToken;
 	}
 
-	public GetUserInfo(): Observable<string> {
-		return this.subjectUserInfo;
+	public GetUserInfo(): Observable<AuthUser> {
+		console.log(`test user info ${this.fakeToken}`);
+		let options = {
+			headers: new Headers({ Authorization: this.fakeToken})
+		};
+		return this.http.post(`${this.urlServer}/auth/userinfo`, {}, options)
+		.map((response) => response.json())
+		.map((user) => {
+			return new AuthUser(user);
+		});
 	}
 }

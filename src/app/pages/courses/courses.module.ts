@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpModule } from '@angular/http';
 
 // routes
 import { routes } from './courses.routes';
@@ -53,7 +54,8 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		routes,
 		FormsModule,
 		ReactiveFormsModule,
-		CommonModule
+		CommonModule,
+		HttpModule
 	],
 	providers: [CourseService, AuthService, LoadRunnerService, BreadCrumbService]
 })

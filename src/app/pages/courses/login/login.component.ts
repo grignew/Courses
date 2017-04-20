@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation, Input, OnInit, OnDestroy } from '@angular/core';
 import { ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Response } from '@angular/http';
 import { AuthService } from '../services/auth.service';
 import { LoadRunnerService } from '../services/loadrunner.service';
 import { Subscription, Observer } from 'rxjs/Rx';
@@ -16,7 +17,9 @@ import { BreadCrumbService } from '../services/breadcrumb.service';
 })
 export class LoginComponent implements  OnInit, OnDestroy {
 	public userName: string;
+	public userPass: string;
 	public isLoadRunnerShow: boolean = false;
+	public errorMessage: string;
 	private loadRunnerServiceSubscriber: Subscription;
 
 	constructor(
@@ -29,11 +32,16 @@ export class LoginComponent implements  OnInit, OnDestroy {
 
 	public onLogin() {
 		this.loadRunnerService.Show();
-		this.authService.Login(this.userName).subscribe((data) => {
+		this.authService.Login(this.userName, this.userPass).subscribe((data) => {
 			if (data) {
 				this.loadRunnerService.Hide();
 				this.router.navigate(['/courses']);
 			}
+		},
+		(err: Response) => {
+			this.loadRunnerService.Hide();
+			this.errorMessage = err.text();
+			console.log(this.errorMessage);
 		});
 	}
 

@@ -25,14 +25,5 @@ module.exports = (server) => {
 		res.json(courses);
 	});
 	
-	router.delete('/deletecourse', (req, res, next) => {
-		let url_parts = url.parse(req.originalUrl, true),
-			courseId = url_parts.query.courseid,
-			courses = server.db.getState().courses;
-			courses = courses.filter((course) => course.id === courseId);
-			server.db.setState({ "courses": [{"id": 123, "name": "qwerty", "duration": 12}], "users": [] });
-			server.db.write();
-		res.json('Deleted');
-	});
 	return router;
 };

@@ -3,20 +3,41 @@ import { Observable, Subject } from 'rxjs/Rx';
 import { Course } from './../models';
 import { Courses } from './mock.courses';
 import { CourseFilterPipe } from '../pipes/course.filter.pipe';
+import { Http, Request, RequestOptions, Headers, Response } from '@angular/http';
+import { URLSearchParams, RequestMethod } from '@angular/http';
 
 @Injectable()
 export class CourseService {
-	public filterString: string;
-	private courseList: Course[];
+	public filterString: string = '';
+	public courseList: Course[];
 	private filteredCourses: Subject<Course[]> = new Subject();
 	private courseFilter = new CourseFilterPipe();
+	private urlServer = 'http://localhost:3004';
+	private amountCourses: number;
+	private countCourses: number = 10;
+	private startCourses: number = 1;
 
-	constructor() {
+	constructor(private http: Http) {
 		this.courseList = Courses;
 	}
 
 	public getList(): Observable<Course[]> {
-		return Observable.of(this.courseList);
+		let param = new URLSearchParams();
+		param.set('start', `${this.startCourses}`);
+		param.set('count', `${this.countCourses}`);
+		param.set('filter', `${this.filterString}`);
+		let options = {
+			search: param
+		};
+		console.log(`filter test ${this.filterString}`);
+		return this.http.get(`${this.urlServer}/courses`, options)
+		.map((req) => req.json())
+		.map((courses) => courses.map((course) => new Course(course)));
+	}
+
+	public AddMore() {
+		this.startCourses += this.countCourses;
+		this.getList();
 	}
 
 	public createCourse(course: Course) {
@@ -34,22 +55,29 @@ export class CourseService {
 	}
 
 	public removeItem(id: number): Observable<boolean> {
-		return Observable.create((observer) => {
+		let param = new URLSearchParams();
+		param.set('courseid', `${id}`);
+		let option = {
+			search: param
+		};
+		return this.http.delete(`${this.urlServer}/deletecourse`, option)
+		.map((res) => true);
+		/*return Observable.create((observer) => {
 			setTimeout(() => {
 				this.courseList.splice(
 				this.courseList.findIndex((course) => course.id === id), 1);
 				observer.next(true);
 				observer.complete();
 			}, 2000);
-		});
+		});*/
 	}
 
 	public get getFilterCourses(): Observable<Course[]> {
 		return this.filteredCourses;
 	}
 	public filterCourses(filterString: string) {
-		// this.filterString = filterString;
 		console.log('method filterCourses = ' + filterString);
-		return this.filteredCourses.next(this.courseFilter.transform(this.courseList, this.filterString));
+		/*this.courseFilter.transform(this.courseList, this.filterString)*/
+		this.getList().subscribe((courses) => this.filteredCourses.next(courses));
 	}
 }

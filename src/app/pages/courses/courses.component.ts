@@ -19,7 +19,7 @@ import { BreadCrumbService } from './services/breadcrumb.service';
 export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	public isShownDeleteConfirmation: boolean;
 	public isLoadRunnerShow: boolean = false;
-	public courseList: Course[];
+	public courseList: Course[] = [];
 	private deleteCourse: Course;
 	private loadRunnerServiceSubscriber: Subscription;
 	private courseServiceFilterSubscriber: Subscription;
@@ -38,12 +38,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 
 	public ngOnInit() {
 		console.log('Courses init');
-		this.courseServiceGetListSubscriber = this.courseService.getList()
-		.map((courses) => {
-			courses.forEach((course, i, courases) => course.name = `${course.name}_`);
-			return courses;
-		})
-		.subscribe((data) => this.courseList = data);
+		this.onAddMore();
 		this.loadRunnerServiceSubscriber = this.loadRunnerService.isShow.subscribe((data) => {
 			this.isLoadRunnerShow = data;
 			this.cdRef.markForCheck();
@@ -55,6 +50,14 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 		});
 	}
 
+	public onAddMore() {
+		this.courseServiceGetListSubscriber = this.courseService.getList()
+		.subscribe((data: Course[]) => {
+			this.courseService.courseList = data;
+			this.courseList = this.courseList.concat(data);
+			this.cdRef.markForCheck();
+		});
+	}
 	public onDeleteCourse(course: Course) {
 		console.log(`Delete Course ${course.name}!`);
 		this.deleteCourse = course;
@@ -67,7 +70,8 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 			this.courseService.removeItem(this.deleteCourse.id)
 							.subscribe((data) => {if (data) {
 								this.loadRunnerService.Hide();
-								this.courseService.filterCourses(/*this.courseService.getList()*/''); }
+								this.courseService.filterCourses('');
+								}
 							});
 		}
 		this.isShownDeleteConfirmation = false;

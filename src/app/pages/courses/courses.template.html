@@ -1,10 +1,14 @@
 <div class="courses">
 	<header></header>
-	<div class="course-list">
-		<course-item *ngFor="let course of courseList | myCoursesSortBy | myCoursesFilterBy: this.courseService.filterString" [course]="course" (onDeleteCourseEvent)="onDeleteCourse($event)"></course-item>
+	<div *ngIf="courseList" class="course-list">
+		<course-item *ngFor="let course of courseList | myCoursesSortBy" [course]="course" (onDeleteCourseEvent)="onDeleteCourse($event)"></course-item>
+		<button (click)="onAddMore()">Add more...</button>
 	</div>
-	<div class="no-data" *ngIf="courseList.length == 0">No Data. Feel free to add new course.</div>
+	<div class="no-data" *ngIf="courseList?.length === 0">No Data. Feel free to add new course.</div>
 	<delete-conf *ngIf="isShownDeleteConfirmation" (onDeleteConfirmationCourseEvent)="onDeleteConfirmationCourse($event)"></delete-conf>
 	<load-runner *ngIf="isLoadRunnerShow"></load-runner>
-	<footer></footer>
+	<br />
+	<br />
+		<footer></footer>
 </div>
+<!--| myCoursesFilterBy: this.courseService.filterString-->

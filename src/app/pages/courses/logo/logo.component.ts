@@ -34,7 +34,6 @@ export class LogoComponent implements OnInit, OnDestroy {
 
 	public ngOnInit() {
 		this.userInfoSubsriber = this.authService.GetUserInfo().subscribe((user: AuthUser) => {
-			console.log(`test User info logo ${user.name.last} ${user.name.first}`);
 			this.userInfo = `${user.name.last} ${user.name.first}`;
 			this.cdRef.markForCheck();
 		},

@@ -56,12 +56,12 @@ export class CourseService {
 	}
 
 	public removeItem(id: number): Observable<boolean> {
-		let param = new URLSearchParams();
+		/*let param = new URLSearchParams();
 		param.set('courseid', `${id}`);
 		let option = {
 			search: param
-		};
-		return this.http.delete(`${this.urlServer}/deletecourse`, option)
+		};*/
+		return this.http.delete(`${this.urlServer}/courses/${id}`, {})
 		.map((res) => true);
 		/*return Observable.create((observer) => {
 			setTimeout(() => {

@@ -10,6 +10,6 @@ module.exports = (files) => {
 			db = _.merge(db, data);
 		}
 	}
-
+	console.log('db.js', files);
 	return jsonServer.router(db);
 };

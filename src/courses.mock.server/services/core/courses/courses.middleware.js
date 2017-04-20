@@ -29,9 +29,9 @@ module.exports = (server) => {
 		let url_parts = url.parse(req.originalUrl, true),
 			courseId = url_parts.query.courseid,
 			courses = server.db.getState().courses;
-			console.log('delete course server', server.db.getState().courses.findIndex((course) => course.id === courseId));
-			server.db.getState().courses.splice(
-				server.db.getState().courses.findIndex((course) => course.id === courseId), 1);
+			courses = courses.filter((course) => course.id === courseId);
+			server.db.setState({ "courses": [{"id": 123, "name": "qwerty", "duration": 12}], "users": [] });
+			server.db.write();
 		res.json('Deleted');
 	});
 	return router;

@@ -51,6 +51,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	}
 
 	public onAddMore() {
+		this.courseService.startCourses += this.courseService.countCourses;
 		this.courseServiceGetListSubscriber = this.courseService.getList()
 		.subscribe((data: Course[]) => {
 			this.courseService.courseList = data;

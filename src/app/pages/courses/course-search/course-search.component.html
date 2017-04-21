@@ -1,7 +1,7 @@
 <div class="row buffer-padding">
 		<div class="col-md-6 form-inline">
 			<div class="form-group">
-			<input type="text" [(ngModel)]="findCourse" (ngModelChange)="runOnEmpty()" class="form-control" placeholder="course name...">
+			<input type="text" [(ngModel)]="findCourse" (ngModelChange)="runOnEmpty()" (keyup)="onHandleKeyUp($event)" class="form-control" placeholder="course name...">
 			</div>
 			<button id="find" class="btn btn-default find-button" (click)="onSearch()">Find</button>
 		</div>

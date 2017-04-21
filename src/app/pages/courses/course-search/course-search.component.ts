@@ -31,6 +31,13 @@ export class CourseSearchComponent {
 		}
 	}
 
+	public onHandleKeyUp(event: KeyboardEvent) {
+		console.log(event.keyCode);
+		if (event.keyCode === 13 && this.findCourse.length > 0)	{
+			this.onSearch();
+		}
+	}
+
 	public onAddCourse() {
 	}
 }

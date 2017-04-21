@@ -17,11 +17,12 @@ module.exports = (server) => {
 		//console.log(sort);
 		//console.log(queryStr);
 		console.dir(query);
-		if (courses.length < to) {
+		/*if (courses.length < to) {
 			to = courses.length;
-		}
+		}*/
+		console.dir(courses.length);
 		courses = courses.slice(from, to);
-		
+		console.dir(courses);
 		res.json(courses);
 	});
 	

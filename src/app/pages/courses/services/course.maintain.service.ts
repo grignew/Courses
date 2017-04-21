@@ -16,7 +16,7 @@ export class CourseService {
 	private urlServer = 'http://localhost:3004';
 	private amountCourses: number;
 	public countCourses: number = 2;
-	public startCourses: number = 1;
+	public startCourses: number = 0;
 
 	constructor(private http: AuthorizedHttp) {
 		this.courseList = Courses;
@@ -65,7 +65,7 @@ export class CourseService {
 	}
 	public filterCourses(filterString: string) {
 		console.log('method filterCourses = ' + filterString);
-		this.startCourses = 1;
+		this.startCourses = 0;
 		this.getList().subscribe((courses) => this.filteredCourses.next(courses));
 	}
 }

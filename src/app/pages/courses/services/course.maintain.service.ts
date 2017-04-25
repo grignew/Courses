@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs/Rx';
 import { Course } from './../models';
-import { Courses } from './mock.courses';
+// import { Courses } from './mock.courses';
 import { CourseFilterPipe } from '../pipes/course.filter.pipe';
 import { Http, Request, RequestOptions, Headers, Response } from '@angular/http';
 import { URLSearchParams, RequestMethod } from '@angular/http';
@@ -19,7 +19,7 @@ export class CourseService {
 	public startCourses: number = 0;
 
 	constructor(private http: AuthorizedHttp) {
-		this.courseList = Courses;
+		// this.courseList = Courses;
 	}
 
 	public getList(): Observable<Course[]> {

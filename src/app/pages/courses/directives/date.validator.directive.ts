@@ -5,10 +5,10 @@ import moment from 'moment';
 @Directive({
 	selector: '[validateDate]',
 	providers: [{
-	provide: NG_VALIDATORS,
-	useExisting: forwardRef(() => DateValidatorDirective),
-	multi: true
-	}]
+		provide: NG_VALIDATORS,
+		useExisting: forwardRef(() => DateValidatorDirective),
+		multi: true
+		}]
 })
 
 export class DateValidatorDirective implements Validator {

@@ -20,7 +20,8 @@ import { HeaderComponent }    from './header/header.component';
 import { DeleteConfirmDialogComponent } from './course/course-conf/course.delete.conf.component';
 import { LoadRunnerComponent } from './load-runner/load-runner.component';
 import { AddCourseComponent } from './course/course-maintain/course-add.component';
-import { CourseDateComponent } from './course/custom-components/date-component/date.component';
+import { CourseDateComponent } from './course/custom-components/date.component';
+import { CourseDurationComponent } from './course/custom-components/duration.component';
 
 // services
 import { CourseService } from './services/course.maintain.service';
@@ -32,6 +33,7 @@ import { AuthorizedHttp } from './services/authorizedhttp.service';
 // directives
 import { CourseBorderDirective } from './directives/course.border.directive';
 import { DateValidatorDirective } from './directives/date.validator.directive';
+import { DurationValidatorDirective } from './directives/duration.validator.directive';
 import { CourseDurationPipe } from './pipes/course.duration.pipe';
 import { CourseSortPipe } from './pipes/course.sort.pipe';
 import { CourseFilterPipe } from './pipes/course.filter.pipe';
@@ -54,7 +56,9 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		CourseFilterPipe,
 		AddCourseComponent,
 		CourseDateComponent,
-		DateValidatorDirective
+		DateValidatorDirective,
+		CourseDurationComponent,
+		DurationValidatorDirective
 	],
 	imports: [
 		// routes,

@@ -1,5 +1,5 @@
 import { Course } from './../models';
-
+/*
 export const Courses: Course[] = [
 							{
 								id: 1,
@@ -25,4 +25,4 @@ export const Courses: Course[] = [
 								date: 1491309617397,
 								topRated: true
 							}
-						];
+						];*/

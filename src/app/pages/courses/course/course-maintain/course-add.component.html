@@ -19,14 +19,15 @@
 		<div class="form-group row">
 			<label for="date" class="col-sm-5 col-form-label text-right">Date</label>
 			<div class="col-sm-2">
-				<course-date name="coursedate" id="date" [date]="course.date" name ="date" #date="ngModel" [ngModel]="course.date" required validateDate></course-date>
+				<course-date name="coursedate" id="date" [date]="course.date" name ="date" #date="ngModel" [(ngModel)]="course.date" required validateDate></course-date>
 				<span class="status-message error-message" *ngIf="date.invalid && date.dirty">{{date.errors | json}}</span>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="Duration" class="col-sm-5 col-form-label text-right">Duration</label>
 			<div class="col-sm-2">
-				<input name="duration" type="number" class="form-control" id="Duration" placeholder="min" name="duration" #duration="ngModel" [ngModel]="course.duration" (keydown)="onDurationKeyDown($event)">
+				<course-duration name="duration" type="number" id="Duration" [duration]="course.duration" name="duration" #duration="ngModel" [(ngModel)]="course.duration" required validateDuration></course-duration>
+				<span class="status-message error-message" *ngIf="duration.invalid && duration.dirty">{{duration.errors | json}}</span>
 			</div>
 			<label  class="col-sm-5 col-form-label text-left">{{course.duration | myCourseDuration}}</label>
 		</div>

@@ -8,10 +8,13 @@ export class CourseDurationPipe implements PipeTransform {
 		if (isNaN(duration)) {
 			return '';
 		}
+		if (!duration) {
+			return '';
+		}
 		if (duration < 60) {
-			return `${duration }min`;
+			return `${duration}min`;
 		}else {
-			return `${Math.trunc(duration / 60)}h ${Math.round(duration % 60) }min`;
+			return `${Math.trunc(duration / 60)}h ${Math.round(duration % 60)}min`;
 		}
 	}
 }

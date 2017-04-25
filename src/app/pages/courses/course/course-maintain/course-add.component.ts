@@ -14,7 +14,7 @@ import { NgForm } from '@angular/forms';
 })
 export class AddCourseComponent implements AfterViewInit, OnInit {
 	@ViewChild('form') public userForm: NgForm;
-	public course: Course = {} as Course;
+	public course: Course; // = {} as Course;
 
 	public courseDuration: number;
 	public authors: Authors[];

@@ -3,6 +3,7 @@ import { EventEmitter, Output } from '@angular/core';
 import { CourseFilterPipe } from '../pipes/course.filter.pipe';
 import { Observable, Observer, Subject } from 'rxjs/Rx';
 import { CourseService } from '../services/course.maintain.service';
+import { Course } from './../models';
 
 @Component({
 	selector: 'course-search',

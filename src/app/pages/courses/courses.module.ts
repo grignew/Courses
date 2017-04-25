@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
 
 // routes
 import { routes } from './courses.routes';
@@ -19,6 +20,7 @@ import { HeaderComponent }    from './header/header.component';
 import { DeleteConfirmDialogComponent } from './course/course-conf/course.delete.conf.component';
 import { LoadRunnerComponent } from './load-runner/load-runner.component';
 import { AddCourseComponent } from './course/course-maintain/course-add.component';
+import { CourseDateComponent } from './course/custom-components/date-component/date.component';
 
 // services
 import { CourseService } from './services/course.maintain.service';
@@ -29,6 +31,7 @@ import { AuthorizedHttp } from './services/authorizedhttp.service';
 
 // directives
 import { CourseBorderDirective } from './directives/course.border.directive';
+import { DateValidatorDirective } from './directives/date.validator.directive';
 import { CourseDurationPipe } from './pipes/course.duration.pipe';
 import { CourseSortPipe } from './pipes/course.sort.pipe';
 import { CourseFilterPipe } from './pipes/course.filter.pipe';
@@ -49,10 +52,13 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		CourseDurationPipe,
 		CourseSortPipe,
 		CourseFilterPipe,
-		AddCourseComponent
+		AddCourseComponent,
+		CourseDateComponent,
+		DateValidatorDirective
 	],
 	imports: [
-		routes,
+		// routes,
+		RouterModule,
 		FormsModule,
 		ReactiveFormsModule,
 		CommonModule,

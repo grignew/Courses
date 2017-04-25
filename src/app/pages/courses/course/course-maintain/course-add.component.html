@@ -1,37 +1,46 @@
 <div class="courses">
 	<courselogo></courselogo>
-	<form>
+	<form #form="ngForm" (submit)="submit(form)">
 		<div class="form-group row"></div>
 		<div class="form-group row">
 			<label for="title" class="col-sm-5 col-form-label text-right">Title</label>
 			<div class="col-sm-3">
-				<input type="text" class="form-control" id="title" placeholder="Title">
+				<input type="text" class="form-control" id="title" placeholder="Title" name="name" #name="ngModel" [ngModel]="course.name" required maxlength="50">
+				<span class="status-message error-message" *ngIf="name.invalid && name.dirty">{{name.errors | json}}</span>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="description" class="col-sm-5 col-form-label text-right">Description</label>
 			<div class="col-sm-3">
-				<textarea type="text" class="form-control" id="description" placeholder="Description"></textarea>
+				<textarea type="text" class="form-control" id="description" placeholder="Description" name="description" #description="ngModel" [ngModel]="course.description" required maxlength="500"></textarea>
+				<span class="status-message error-message" *ngIf="description.invalid && description.dirty">{{description.errors | json}}</span>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="date" class="col-sm-5 col-form-label text-right">Date</label>
 			<div class="col-sm-2">
-				<input type="text" class="form-control" id="date" placeholder="Date">
+				<course-date name="coursedate" id="date" [date]="course.date" name ="date" #date="ngModel" [ngModel]="course.date" required validateDate></course-date>
+				<span class="status-message error-message" *ngIf="date.invalid && date.dirty">{{date.errors | json}}</span>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="Duration" class="col-sm-5 col-form-label text-right">Duration</label>
 			<div class="col-sm-2">
-				<input name="duration" type="number" class="form-control" id="Duration" placeholder="min" [(ngModel)]="courseDuration" (keydown)="onDurationKeyDown($event)">
+				<input name="duration" type="number" class="form-control" id="Duration" placeholder="min" name="duration" #duration="ngModel" [ngModel]="course.duration" (keydown)="onDurationKeyDown($event)">
 			</div>
-			<label  class="col-sm-5 col-form-label text-left">{{courseDuration | myCourseDuration}}</label>
+			<label  class="col-sm-5 col-form-label text-left">{{course.duration | myCourseDuration}}</label>
+		</div>
+		<div class="form-group row">
+			<label for="Authors" class="col-sm-5 col-form-label text-right">Authors</label>
+			<div class="col-sm-2">
+				<input name="authors" type="number" class="form-control" id="Authors" placeholder="min" name = "authors" #authors="ngModel" [ngModel]="course.authors">
+			</div>
 		</div>
 		<div class="form-group row"></div>
 		<div class="form-group row">
 			<div class="col-sm-3 offset-sm-4">
-				<button type="submit" class="btn btn-primary" routerLink="/courses" (click)="onSave()">Save</button>
-				<button type="submit" class="btn btn-primary" routerLink="/courses" (click)="onCancel()">Cancel</button>
+				<button type="submit" class="btn btn-primary" routerLink="/courses" [disabled]="!form.valid">Save</button>
+				<button type="submit" class="btn btn-primary" routerLink="/courses">Cancel</button>
 			</div>
 		</div>
 	</form>

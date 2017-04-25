@@ -1,4 +1,4 @@
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { CoursesComponent }    from './courses.component';
 import { LoginComponent }    from './login/login.component';
 import { AddCourseComponent }    from './course/course-maintain/course-add.component';
@@ -7,7 +7,7 @@ import { AddCourseComponent }    from './course/course-maintain/course-add.compo
 const coursesRoutes: Routes = [
 	{ path: 'courses', component: CoursesComponent },
 	{ path: 'login', component: LoginComponent},
-	{ path: 'addcourse', component: AddCourseComponent},
+	{ path: 'addcourse/:id', component: AddCourseComponent},
 ];
 
-export const routes = RouterModule.forChild(coursesRoutes);
+export const routes = RouterModule.forRoot(coursesRoutes, {useHash: true, preloadingStrategy: PreloadAllModules});

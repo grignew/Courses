@@ -1,6 +1,9 @@
-import { Component, ViewEncapsulation, AfterViewInit } from '@angular/core';
+import { Component, ViewEncapsulation, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { Input } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { BreadCrumbService } from '../../services/breadcrumb.service';
-import { BreadCrumb } from '../../models';
+import { BreadCrumb, Course, Authors } from '../../models';
+import { NgForm } from '@angular/forms';
 
 @Component ({
 	selector: 'course-add',
@@ -9,12 +12,39 @@ import { BreadCrumb } from '../../models';
 	providers: [],
 	encapsulation: ViewEncapsulation.None,
 })
-export class AddCourseComponent implements AfterViewInit {
+export class AddCourseComponent implements AfterViewInit, OnInit {
+	@ViewChild('form') public userForm: NgForm;
+	public course: Course = {} as Course;
+
 	public courseDuration: number;
+	public authors: Authors[];
+	private courseId: number = -1;
 	private breadCrumbItem: BreadCrumb = { name: 'Add Course', path: '/addcourse'};
 	private coursesBreadCrumbItem: BreadCrumb = {name: 'Courses', path: '/courses'};
 
-	constructor(private breadCrumbService: BreadCrumbService) {
+	constructor(
+		private breadCrumbService: BreadCrumbService,
+		private route: ActivatedRoute
+	) {
+		route.params.subscribe((p) => {
+			this.courseId = +p['id'];
+			if (this.courseId === -1) {
+			this.course = new Course({});
+		}
+		});
+	}
+
+	public ngOnInit() {
+	}
+
+	public submit(form) {
+        /*if (!this.nameExists(form.value.person.name)) {
+            this.value = form.value;
+            this.people.push(deepCopy(form.value));
+            form.reset();
+        } else {
+            alert('Already exists');
+        }*/
 	}
 
 	public onSave() {

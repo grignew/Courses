@@ -20,8 +20,4 @@ export class CourseItemComponent {
 	public onDeleteCourse() {
 		this.onDeleteCourseEvent.emit(this.course);
 	}
-
-	public onEditCourse() {
-		// this.onEditCourseEvent.emit(this.course);
-	}
 }

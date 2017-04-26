@@ -5,7 +5,7 @@ export class Course {
 	public name: string;
 	public description: string;
 	public duration: number;
-	public date: number;
+	public date: Date;
 	public topRated: boolean;
 	public authors: Authors[];
 
@@ -14,7 +14,7 @@ export class Course {
 		this.name = obj.name;
 		this.description = obj.description;
 		this.duration = obj.duration;
-		this.date = Date.parse(obj.date);
+		this.date = obj.date;
 		this.topRated = obj.topRated;
 		console.dir(obj.authors);
 		this.authors = obj.authors; // .map((authors) => authors.map((author) => new Authors(author)));

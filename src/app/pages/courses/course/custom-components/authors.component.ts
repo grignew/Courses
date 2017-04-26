@@ -12,7 +12,7 @@ const CUSTOM_COURSE_AUTHORS_ACCESSOR = {
 
 @Component({
 	selector: 'authors-sel',
-	template: `<div class="form-control">
+	template: `<div class="form-control authors">
 				<div *ngFor="let author of authors">
 					<input type="checkbox"
 						[checked]="checkAuthorsList(author.id)"
@@ -20,6 +20,11 @@ const CUSTOM_COURSE_AUTHORS_ACCESSOR = {
 					> {{author.firstName}} {{author.lastName}}
 				</div>
 				</div>`,
+	styles: [`.authors {
+		max-height: 150px;
+		overflow-y: auto;
+		}
+	`],
 	providers: [CUSTOM_COURSE_AUTHORS_ACCESSOR]
 })
 export class CourseAuthorsComponent implements OnInit, OnDestroy, ControlValueAccessor {

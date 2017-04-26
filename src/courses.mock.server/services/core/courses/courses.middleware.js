@@ -11,9 +11,9 @@ module.exports = (server) => {
 			to = +query.start + +query.count,
 			//sort = query.sort,
 			//queryStr = query.query,
-			search = query.filter,
+			search = query.filter?query.filter:'',
 			courses = server.db.getState().courses.filter((course) =>
-			search ? course.name.toLowerCase().includes(search.toLowerCase()) : true);
+			search ? course.name.toLowerCase().includes(search.toLowerCase()) : true );
 		//console.log(sort);
 		//console.log(queryStr);
 		console.dir(query);

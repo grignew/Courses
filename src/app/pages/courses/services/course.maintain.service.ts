@@ -45,16 +45,23 @@ export class CourseService {
 		this.courseList.push(course);
 	}
 
-	public GetItem(id: number): Course {
-		return this.courseList.find((course) => course.id === id);
+	public GetItem(id: number): Observable<Course> {
+		// return this.courseList.find((course) => course.id === id);
+		return this.http.get(`${this.urlServer}/courses/${id}`, {})
+		.map((req) => req.json())
+		.map((course) => new Course(course));
 	}
 
 	public updateItem(course: Course) {
-		this.courseList.splice(this.courseList.findIndex((courseIn) => courseIn.id === course.id),
-								1,
-								course);
+		return this.http
+		.put(`${this.urlServer}/courses/${course.id}`, course)
+		.map((res) => res.json());
 	}
-
+	public addItem(course: Course) {
+		return this.http
+		.post(`${this.urlServer}/courses`, course)
+		.map((res) => res.json());
+	}
 	public removeItem(id: number): Observable<boolean> {
 		return this.http.delete(`${this.urlServer}/courses/${id}`, {})
 		.map((res) => true);

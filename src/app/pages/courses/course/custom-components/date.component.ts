@@ -30,7 +30,7 @@ export class CourseDateComponent implements ControlValueAccessor {
 	}
 
 	public writeValue(value: any) {
-		this.date = value ? moment(value).format('DD/MM/YYYY') : '';
+		this.date = value; //  ? moment(value).format('DD/MM/YYYY') : '';
 	}
 
 	private onChange = (_) => {};

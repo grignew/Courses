@@ -6,14 +6,14 @@ import moment from 'moment';
 })
 
 export class CourseBorderDirective {
-	@Input() set courseBorderSet(courseDate: number) {
-		console.log(`${courseDate} > ${Date.now()}`);
-		if (courseDate >= moment().subtract(14, 'days').unix() * 1000) {
-			console.log(`${courseDate} >= ${moment().subtract(14, 'days').unix() * 1000}`);
+	@Input() set courseBorderSet(courseDate: Date) {
+		console.log(`${courseDate} > ${moment().toDate()}`);
+		if (courseDate >= moment().subtract(14, 'days').toDate()) {
+			console.log(`${courseDate} >= ${moment().subtract(14, 'days').toDate()}`);
 			this.renderer.setElementClass(this.el.nativeElement, 'current-course', true);
 		}
-		if (courseDate > Date.now()) {
-			console.log(`${courseDate} > ${Date.now()}`);
+		if (courseDate > moment().toDate()) {
+			console.log(`${courseDate} > ${moment().toDate()}`);
 			this.renderer.setElementClass(this.el.nativeElement, 'future-course', true);
 		}
 	}

@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { BreadCrumbService } from '../../services/breadcrumb.service';
 import { BreadCrumb, Course, Authors } from '../../models';
 import { NgForm } from '@angular/forms';
+import { CourseService } from './../../services/course.maintain.service';
 
 @Component ({
 	selector: 'course-add',
@@ -24,13 +25,16 @@ export class AddCourseComponent implements AfterViewInit, OnInit {
 
 	constructor(
 		private breadCrumbService: BreadCrumbService,
-		private route: ActivatedRoute
+		private route: ActivatedRoute,
+		private courseService: CourseService
 	) {
 		route.params.subscribe((p) => {
 			this.courseId = +p['id'];
 			if (this.courseId === -1) {
-			this.course = new Course({});
-		}
+				this.course = new Course({});
+			}else {
+				this.course = this.courseService.GetItem(this.courseId);
+			}
 		});
 	}
 
@@ -38,6 +42,7 @@ export class AddCourseComponent implements AfterViewInit, OnInit {
 	}
 
 	public submit(form) {
+		console.dir(form.value);
         /*if (!this.nameExists(form.value.person.name)) {
             this.value = form.value;
             this.people.push(deepCopy(form.value));

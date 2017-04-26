@@ -8,11 +8,11 @@
 				<span *ngIf="course.topRated" class="col-md-3 star-rate"><i class="material-icons">star</i></span>
 			</div>
 			<div class="row">
-				<pre class="col-md-12">{{course.description}}</pre>
+				<pre class="col-md-12 decription">{{course.description}}</pre>
 			</div>
 		</div>
 		<div class="col-md-2">
-			<button class="pull-right button btn btn-default edit-button" id="editcourse">Edit course</button>
+			<button class="pull-right button btn btn-default edit-button" id="editcourse" [routerLink]="['/addcourse',course.id]">Edit course</button>
 			<button class="pull-right button btn btn-default delete-button" id="deletecourse" (click)="onDeleteCourse()">Delete</button>
 		</div>
 	</div>

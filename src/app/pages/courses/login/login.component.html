@@ -1,14 +1,14 @@
 <courselogo></courselogo>
-<form>
+<form #form="ngForm" (submit)="onLogin(form)">
   <div class="form-group">
     <label for="login">Login</label>
-    <input name="login" type="text" [(ngModel)]="userName" class="form-control" placeholder="Login">
+    <input name="login" type="text" [(ngModel)]="userName" class="form-control" #login="ngModel" placeholder="Login" required>
   </div>
   <div class="form-group">
     <label for="password">Password</label>
-    <input name="password" type="password" [(ngModel)]="userPass" class="form-control" id="password" placeholder="Password">
+    <input name="password" type="password" [(ngModel)]="userPass" class="form-control" #password="ngModel" id="password" placeholder="Password" required>
   </div>
-  <button type="submit" class="btn btn-default" (click)="onLogin()">Login</button>
+  <button type="submit" class="btn btn-default" (click)="onLogin()" [disabled]="!form.valid">Login</button>
   <span *ngIf="errorMessage">{{errorMessage}}</span>
   <load-runner *ngIf="isLoadRunnerShow"></load-runner>
 </form>

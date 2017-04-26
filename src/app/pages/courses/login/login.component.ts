@@ -6,6 +6,7 @@ import { LoadRunnerService } from '../services/loadrunner.service';
 import { Subscription, Observer } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { BreadCrumbService } from '../services/breadcrumb.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
 	selector: 'login',

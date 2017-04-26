@@ -22,6 +22,7 @@ import { LoadRunnerComponent } from './load-runner/load-runner.component';
 import { AddCourseComponent } from './course/course-maintain/course-add.component';
 import { CourseDateComponent } from './course/custom-components/date.component';
 import { CourseDurationComponent } from './course/custom-components/duration.component';
+import { CourseAuthorsComponent } from './course/custom-components/authors.component';
 
 // services
 import { CourseService } from './services/course.maintain.service';
@@ -29,11 +30,13 @@ import { AuthService } from './services/auth.service';
 import { LoadRunnerService } from './services/loadrunner.service';
 import { BreadCrumbService } from './services/breadcrumb.service';
 import { AuthorizedHttp } from './services/authorizedhttp.service';
+import { AuthorsService } from './services/authors.service';
 
 // directives
 import { CourseBorderDirective } from './directives/course.border.directive';
 import { DateValidatorDirective } from './directives/date.validator.directive';
 import { DurationValidatorDirective } from './directives/duration.validator.directive';
+import { AuthorsValidatorDirective } from './directives/authors.validator.directive';
 import { CourseDurationPipe } from './pipes/course.duration.pipe';
 import { CourseSortPipe } from './pipes/course.sort.pipe';
 import { CourseFilterPipe } from './pipes/course.filter.pipe';
@@ -58,7 +61,9 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		CourseDateComponent,
 		DateValidatorDirective,
 		CourseDurationComponent,
-		DurationValidatorDirective
+		DurationValidatorDirective,
+		CourseAuthorsComponent,
+		AuthorsValidatorDirective
 	],
 	imports: [
 		// routes,
@@ -68,7 +73,8 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		CommonModule,
 		HttpModule
 	],
-	providers: [CourseService, AuthService, LoadRunnerService, BreadCrumbService, AuthorizedHttp]
+	providers: [CourseService, AuthService, LoadRunnerService,
+		BreadCrumbService, AuthorizedHttp, AuthorsService]
 })
 export class CoursesModule {
 	constructor() {

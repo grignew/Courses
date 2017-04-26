@@ -26,15 +26,16 @@
 		<div class="form-group row">
 			<label for="Duration" class="col-sm-5 col-form-label text-right">Duration</label>
 			<div class="col-sm-2">
-				<course-duration name="duration" type="number" id="Duration" [duration]="course.duration" name="duration" #duration="ngModel" [(ngModel)]="course.duration" required validateDuration></course-duration>
+				<course-duration name="duration" type="number" id="Duration" [duration]="course.duration" name="duration" #duration="ngModel" [(ngModel)]="course.duration" validateDuration required></course-duration>
 				<span class="status-message error-message" *ngIf="duration.invalid && duration.dirty">{{duration.errors | json}}</span>
 			</div>
 			<label  class="col-sm-5 col-form-label text-left">{{course.duration | myCourseDuration}}</label>
 		</div>
 		<div class="form-group row">
 			<label for="Authors" class="col-sm-5 col-form-label text-right">Authors</label>
-			<div class="col-sm-2">
-				<input name="authors" type="number" class="form-control" id="Authors" placeholder="min" name = "authors" #authors="ngModel" [ngModel]="course.authors">
+			<div class="col-sm-3">
+				<authors-sel name="authors" type="number" id="Authors" name="authors" [courseAuthors]="course.authors" #authors="ngModel" [(ngModel)]="course.authors" validateAuthors required></authors-sel>
+				<span class="status-message error-message" *ngIf="authors.invalid && authors.dirty">{{authors.errors | json}}</span>
 			</div>
 		</div>
 		<div class="form-group row"></div>

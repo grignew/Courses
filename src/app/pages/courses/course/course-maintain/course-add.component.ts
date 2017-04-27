@@ -23,7 +23,7 @@ export class AddCourseComponent implements AfterViewInit, OnInit, OnDestroy {
 	public authors: Authors[];
 	public courseDate: string = '';
 	private courseId: number = -1;
-	private breadCrumbItem: BreadCrumb = { name: 'Add Course', path: '/addcourse'};
+	private breadCrumbItem: BreadCrumb = { name: 'Add Course', path: '/courses'};
 	private coursesBreadCrumbItem: BreadCrumb = {name: 'Courses', path: '/courses'};
 	private courseItemSubscriber: Subscription;
 

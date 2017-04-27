@@ -31,6 +31,7 @@ import { LoadRunnerService } from './services/loadrunner.service';
 import { BreadCrumbService } from './services/breadcrumb.service';
 import { AuthorizedHttp } from './services/authorizedhttp.service';
 import { AuthorsService } from './services/authors.service';
+import { CanActivateGuard } from './activate.guard';
 
 // directives
 import { CourseBorderDirective } from './directives/course.border.directive';
@@ -74,7 +75,7 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		HttpModule
 	],
 	providers: [CourseService, AuthService, LoadRunnerService,
-		BreadCrumbService, AuthorizedHttp, AuthorsService]
+		BreadCrumbService, AuthorizedHttp, AuthorsService, CanActivateGuard]
 })
 export class CoursesModule {
 	constructor() {

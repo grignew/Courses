@@ -11,12 +11,12 @@ import { AuthorizedHttp } from './authorizedhttp.service';
 export class CourseService {
 	public filterString: string = '';
 	public courseList: Course[];
+	public countCourses: number = 2;
+	public startCourses: number = 0;
 	private filteredCourses: Subject<Course[]> = new Subject();
 	private courseFilter = new CourseFilterPipe();
 	private urlServer = 'http://localhost:3004';
 	private amountCourses: number;
-	public countCourses: number = 2;
-	public startCourses: number = 0;
 
 	constructor(private http: AuthorizedHttp) {
 		// this.courseList = Courses;

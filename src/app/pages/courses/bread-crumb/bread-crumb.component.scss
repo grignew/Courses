@@ -53,3 +53,8 @@
 .btn-breadcrumb .btn.btn-primary:hover:not(:last-child):before {
   border-left: 10px solid #285e8e;
 }
+
+.inactiveLink {
+   pointer-events: none;
+   cursor: default;
+}

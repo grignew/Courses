@@ -37,13 +37,19 @@ export class AddCourseComponent implements AfterViewInit, OnInit, OnDestroy {
 			this.courseId = +p['id'];
 			console.log('courseId', this.courseId);
 			this.course = new Course({});
-			if (this.courseId !== -1) {
+			if (this.courseId) {
 				this.courseItemSubscriber = this.courseService.GetItem(this.courseId).subscribe(
 					(course) => {
 						this.course = course;
 						this.courseDate = moment(course.date).format('DD/MM/YYYY');
+						this.breadCrumbItem = {name: this.course.name, path: '' };
+						this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 						console.dir('get course', this.course);
 					});
+			} else {
+				console.log('Course id is nan');
+				this.breadCrumbItem = { name: 'New Course', path: ''};
+				this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 			}
 		});
 	}
@@ -72,12 +78,10 @@ export class AddCourseComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 
 	public onSave() {
-		console.log('save course');
 		this.breadCrumbService.removeBreadCrumb(this.breadCrumbItem);
 	}
 
 	public onCancel() {
-		console.log('cancel course');
 		this.breadCrumbService.removeBreadCrumb(this.breadCrumbItem);
 	}
 
@@ -89,8 +93,6 @@ export class AddCourseComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 
 	public ngAfterViewInit() {
-		console.log('ngAfterViewInit add course');
 		this.breadCrumbService.setBreadCrumbLeaf(this.coursesBreadCrumbItem);
-		this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 	}
 }

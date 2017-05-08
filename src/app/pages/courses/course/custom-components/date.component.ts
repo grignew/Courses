@@ -19,9 +19,12 @@ export class CourseDateComponent implements ControlValueAccessor {
 	constructor() {
 	}
 	public setValue(item) {
-		console.dir(moment(item.target.value, 'DD/MM/YYYY').toDate());
-		this.onChange(moment(item.target.value, 'DD/MM/YYYY').toDate());
-		// this.onChange(item.target.value);
+		let DATE_REGEXP = new RegExp('\\d{2,2}\/\\d{2,2}\/\\d{4,4}');
+		if (DATE_REGEXP.test(item.target.value)) {
+				this.onChange(moment(item.target.value, 'DD/MM/YYYY').toDate());
+		}else {
+			this.onChange(null);
+		}
 		this.onTouched();
 	}
 	public registerOnChange(fn: any) {

@@ -41,7 +41,7 @@ export class AddCourseComponent implements AfterViewInit, OnInit, OnDestroy {
 				this.courseItemSubscriber = this.courseService.GetItem(this.courseId).subscribe(
 					(course) => {
 						this.course = course;
-						this.courseDate = moment(course.date).format('DD/MM/YYYY');
+						// this.courseDate = moment(course.date).format('DD/MM/YYYY');
 						this.breadCrumbItem = {name: this.course.name, path: '' };
 						this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 						console.dir('get course', this.course);
@@ -64,7 +64,7 @@ export class AddCourseComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 	public submit(form) {
 		// console.log(form.value);
-		this.course.date = moment(this.courseDate, 'DD/MM/YYYY').toDate();
+		// this.course.date = moment(this.courseDate, 'DD/MM/YYYY').toDate();
 		// console.log('this.course.date', this.course.date);
 		if (this.courseId) {
 			this.courseService.updateItem(this.course).subscribe((res) => {

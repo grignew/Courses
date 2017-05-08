@@ -28,7 +28,7 @@ const CUSTOM_COURSE_AUTHORS_ACCESSOR = {
 	providers: [CUSTOM_COURSE_AUTHORS_ACCESSOR]
 })
 export class CourseAuthorsComponent implements OnInit, OnDestroy, ControlValueAccessor {
-	@Input() public courseAuthors: Authors[];
+	public courseAuthors: Authors[];
 	public authors: Authors[];
 	private subscrAuthorsService: Subscription;
 

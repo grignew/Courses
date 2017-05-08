@@ -10,16 +10,18 @@ const CUSTOM_COURSE_DATE_ACCESSOR = {
 
 @Component({
 	selector: 'course-date',
-	template: '<input type="text" placeholder="DD/MM/YYYY" class="form-control" [value]="date" (change)="setValue($event)">',
+	template: '<input type="text" placeholder="DD/MM/YYYY" class="form-control" [value]="humanDate" (change)="setValue($event)">',
 	providers: [CUSTOM_COURSE_DATE_ACCESSOR]
 })
 export class CourseDateComponent implements ControlValueAccessor {
-	@Input() public date: string;
-
+	public date: Date;
+	public humanDate: string;
 	constructor() {
 	}
 	public setValue(item) {
-		this.onChange(item.target.value);
+		console.dir(moment(item.target.value, 'DD/MM/YYYY').toDate());
+		this.onChange(moment(item.target.value, 'DD/MM/YYYY').toDate());
+		// this.onChange(item.target.value);
 		this.onTouched();
 	}
 	public registerOnChange(fn: any) {
@@ -32,6 +34,7 @@ export class CourseDateComponent implements ControlValueAccessor {
 
 	public writeValue(value: any) {
 		this.date = value; //  ? moment(value).format('DD/MM/YYYY') : '';
+		this.humanDate = moment(this.date).format('DD/MM/YYYY');
 	}
 
 	private onChange = (_) => {};

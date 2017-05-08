@@ -14,8 +14,7 @@ import moment from 'moment';
 export class DateValidatorDirective implements Validator {
 
 	public validate(c: FormControl): {[key: string]: boolean} {
-		let DATE_REGEXP = new RegExp('\\d{2,2}\/\\d{2,2}\/\\d{4,4}');
-		return DATE_REGEXP.test(c.value) && moment(c.value, 'DD/MM/YYYY').isValid() ?
+		return moment(c.value).isValid() ?
 			null :
 			{ invalidDate: true };
 	}

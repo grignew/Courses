@@ -14,7 +14,7 @@ const CUSTOM_COURSE_DURATION_ACCESSOR = {
 	providers: [CUSTOM_COURSE_DURATION_ACCESSOR]
 })
 export class CourseDurationComponent implements ControlValueAccessor {
-	@Input() public duration: number;
+	public duration: number;
 
 	constructor() {
 	}

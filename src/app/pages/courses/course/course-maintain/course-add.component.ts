@@ -63,15 +63,19 @@ export class AddCourseComponent implements AfterViewInit, OnInit, OnDestroy {
 		}
 	}
 	public submit(form) {
-		console.log(form.value);
+		// console.log(form.value);
 		this.course.date = moment(this.courseDate, 'DD/MM/YYYY').toDate();
-		console.log('this.course.date', this.course.date);
-		if (this.courseId !== -1) {
+		// console.log('this.course.date', this.course.date);
+		if (this.courseId) {
 			this.courseService.updateItem(this.course).subscribe((res) => {
+				console.log('navigate when exist course id');
+				this.breadCrumbService.removeBreadCrumb(this.breadCrumbItem);
 				this.router.navigateByUrl('/courses');
 			});
 		}else {
 			this.courseService.addItem(this.course).subscribe((res) => {
+				console.log('navigate when not exist course id');
+				this.breadCrumbService.removeBreadCrumb(this.breadCrumbItem);
 				this.router.navigateByUrl('/courses');
 			});
 		}

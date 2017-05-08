@@ -6,28 +6,32 @@
 			<label for="title" class="col-sm-5 col-form-label text-right">Title</label>
 			<div class="col-sm-3">
 				<input type="text" class="form-control" id="title" placeholder="Title" name="name" #name="ngModel" [(ngModel)]="course.name" required maxlength="50">
-				<span class="status-message error-message" *ngIf="name.invalid && name.dirty">{{name.errors | json}}</span>
+				<!--<span class="status-message error-message" *ngIf="name.invalid && name.dirty">{{name.errors | json}}</span>-->
+				<span class="status-message error-message" *ngIf="name.invalid && name.dirty">Please, type max 50 symbols</span>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="description" class="col-sm-5 col-form-label text-right">Description</label>
 			<div class="col-sm-4">
 				<textarea type="text" class="form-control" id="description" placeholder="Description" name="description" #description="ngModel" [(ngModel)]="course.description" required maxlength="500"></textarea>
-				<span class="status-message error-message" *ngIf="description.invalid && description.dirty">{{description.errors | json}}</span>
+				<!--<span class="status-message error-message" *ngIf="description.invalid && description.dirty">{{description.errors | json}}</span>-->
+				<span class="status-message error-message" *ngIf="description.invalid && description.dirty">Please, type max 500 symbols</span>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="date" class="col-sm-5 col-form-label text-right">Date</label>
 			<div class="col-sm-2">
 				<course-date name="coursedate" id="date" [date]="this.courseDate" name ="date" #date="ngModel" [(ngModel)]="this.courseDate" required validateDate></course-date>
-				<span class="status-message error-message" *ngIf="date.invalid && date.dirty">{{date.errors | json}}</span>
+				<!--<span class="status-message error-message" *ngIf="date.invalid && date.dirty">{{date.errors | json}}</span>-->
+				<span class="status-message error-message" *ngIf="date.invalid && date.dirty">Invalid date format</span>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="Duration" class="col-sm-5 col-form-label text-right">Duration</label>
 			<div class="col-sm-2">
 				<course-duration name="duration" type="number" id="Duration" [duration]="course.duration" #duration="ngModel" [(ngModel)]="course.duration" validateDuration required></course-duration>
-				<span class="status-message error-message" *ngIf="duration.invalid && duration.dirty">{{duration.errors | json}}</span>
+				<!--<span class="status-message error-message" *ngIf="duration.invalid && duration.dirty">{{duration.errors | json}}</span>-->
+				<span class="status-message error-message" *ngIf="duration.invalid && duration.dirty">Please, type duration</span>
 			</div>
 			<label  class="col-sm-5 col-form-label text-left">{{course.duration | myCourseDuration}}</label>
 		</div>
@@ -35,7 +39,8 @@
 			<label for="Authors" class="col-sm-5 col-form-label text-right">Authors</label>
 			<div class="col-sm-3">
 				<authors-sel name="authors" type="number" id="Authors" name="authors" [courseAuthors]="course.authors" #authors="ngModel" [(ngModel)]="course.authors" validateAuthors required></authors-sel>
-				<span class="status-message error-message" *ngIf="authors.invalid && authors.dirty">{{authors.errors | json}}</span>
+				<!--<span class="status-message error-message" *ngIf="authors.invalid && authors.dirty">{{authors.errors | json}}</span>-->
+				<span class="status-message error-message" *ngIf="authors.invalid && authors.dirty">Should be ticked at least one author</span>
 			</div>
 		</div>
 		<div class="form-group row"></div>

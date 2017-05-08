@@ -50,6 +50,7 @@ export class CourseAuthorsComponent implements OnInit, OnDestroy, ControlValueAc
 		}
 		console.dir(this.courseAuthors);
 		this.onChange(this.courseAuthors);
+		this.onTouched();
 	}
 
 	public registerOnChange(fn: any) {

@@ -33,18 +33,20 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 				private cdRef: ChangeDetectorRef,
 				private breadCrumbService: BreadCrumbService
 				) {
-		console.log('Courses constructor');
+		// console.log('Courses constructor');
 	}
 
 	public ngOnInit() {
-		console.log('Courses init');
+		// console.log('Courses init');
+		this.courseService.startCourses = 0;
+		this.courseService.filterString = '';
 		this.onAddMore();
 		this.loadRunnerServiceSubscriber = this.loadRunnerService.isShow.subscribe((data) => {
 			this.isLoadRunnerShow = data;
 			this.cdRef.markForCheck();
 		});
 		this.courseServiceFilterSubscriber = this.courseService.getFilterCourses.subscribe((data) => {
-			console.log(data);
+			// console.log(data);
 			this.courseList = data;
 			this.cdRef.markForCheck();
 		});
@@ -60,7 +62,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 		});
 	}
 	public onDeleteCourse(course: Course) {
-		console.log(`Delete Course ${course.name}!`);
+		// console.log(`Delete Course ${course.name}!`);
 		this.deleteCourse = course;
 		this.isShownDeleteConfirmation = true;
 	}
@@ -83,7 +85,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 		this.loadRunnerServiceSubscriber.unsubscribe();
 		this.courseServiceFilterSubscriber.unsubscribe();
 		this.courseServiceGetListSubscriber.unsubscribe();
-		console.log('ngOnDestroy');
+		// console.log('ngOnDestroy');
 	}
 
 	// public ngOnChanges() {
@@ -103,7 +105,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	// }
 
 	public ngAfterViewInit() {
-		console.log('ngAfterViewInit courses');
+		// console.log('ngAfterViewInit courses');
 		this.breadCrumbService.setBreadCrumbLeaf(this.breadCrumbItem);
 	}
 

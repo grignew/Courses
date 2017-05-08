@@ -10,7 +10,7 @@ const CUSTOM_COURSE_DURATION_ACCESSOR = {
 
 @Component({
 	selector: 'course-duration',
-	template: '<input type="number" placeholder="MMM" class="form-control" [value]="duration" (change)="setValue($event)">',
+	template: '<input type="number" placeholder="MMM" class="form-control" [value]="duration" (input)="setValue($event)">',
 	providers: [CUSTOM_COURSE_DURATION_ACCESSOR]
 })
 export class CourseDurationComponent implements ControlValueAccessor {
@@ -20,6 +20,7 @@ export class CourseDurationComponent implements ControlValueAccessor {
 	}
 	public setValue(item) {
 		this.onChange(item.target.value);
+		this.onTouched();
 	}
 	public registerOnChange(fn: any) {
 		this.onChange = fn;

@@ -20,6 +20,7 @@ export class CourseDateComponent implements ControlValueAccessor {
 	}
 	public setValue(item) {
 		this.onChange(item.target.value);
+		this.onTouched();
 	}
 	public registerOnChange(fn: any) {
 		this.onChange = fn;

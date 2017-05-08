@@ -1,3 +1,11 @@
 .course-add {
 	
 }
+
+.ng-invalid.ng-touched:not(form), .ng-invalid.ng-touched:not(form)>input {
+	border-color: red;
+	border-width: 1px;
+	border-style: solid;
+	display: block;
+	border-radius: 3px;
+}

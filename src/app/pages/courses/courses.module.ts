@@ -4,10 +4,18 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 // routes
 import { routes } from './courses.routes';
 
+// effects
+import { AuthEffect } from './effects/auth.effect';
+
+//reducers
+import { reducer } from './reducers';
 // custom components
 import { CoursesComponent } from './courses.component';
 import { LogoComponent } from './logo/logo.component';
@@ -72,7 +80,10 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		FormsModule,
 		ReactiveFormsModule,
 		CommonModule,
-		HttpModule
+		HttpModule,
+		StoreModule.provideStore(reducer),
+		StoreDevtoolsModule.instrumentOnlyWithExtension(),
+		EffectsModule.run(AuthEffect)
 	],
 	providers: [CourseService, AuthService, LoadRunnerService,
 		BreadCrumbService, AuthorizedHttp, AuthorsService, CanActivateGuard]

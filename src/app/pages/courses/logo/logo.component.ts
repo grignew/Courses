@@ -9,6 +9,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { BreadCrumbService } from '../services/breadcrumb.service';
 import { BreadCrumb } from '../models';
 import { AuthUser } from './../models/auth.model';
+import { Store } from '@ngrx/store';
+import { State } from './../reducers';
+import * as auth from './../actions/auth.action';
 
 @Component({
 	selector: 'courselogo',
@@ -25,25 +28,40 @@ export class LogoComponent implements OnInit, OnDestroy {
 	private userInfoSubsriber: Subscription;
 
 	constructor(
-		private authService: AuthService,
+		// private authService: AuthService,
+		private store: Store<State>,
 		private breadCrumbService: BreadCrumbService,
 		private cdRef: ChangeDetectorRef
 		) {
-			this.isAuthenticated = this.authService.IsAuthenticated();
+			// this.store.select((state) => state.auth).first()
+			// .map((stateAuth) => stateAuth.authUser)
+			// .subscribe((authUser) => {
+			// 	this.isAuthenticated = !!authUser;
+			// });
+			// this.isAuthenticated = this.authService.IsAuthenticated();
 	}
 
 	public ngOnInit() {
-		this.userInfoSubsriber = this.authService.GetUserInfo().subscribe((user: AuthUser) => {
-			this.userInfo = `${user.name.last} ${user.name.first}`;
-			this.cdRef.markForCheck();
-		},
-		(err) => this.userInfo = 'Error');
+		this.userInfoSubsriber = this.store.select((state) => state.auth).first()
+		.map((stateAuthUser) => stateAuthUser.authUser)
+		.subscribe((authUser) => {
+			if (!!authUser) {
+				this.userInfo = `${authUser.name.last} ${authUser.name.first}`;
+			}
+			this.isAuthenticated = !!authUser;
+		});
+		// this.userInfoSubsriber = this.authService.GetUserInfo().subscribe((user: AuthUser) => {
+		// 	this.userInfo = `${user.name.last} ${user.name.first}`;
+		// 	this.cdRef.markForCheck();
+		// },
+		// (err) => this.userInfo = 'Error');
 	}
 	public ngOnDestroy() {
 		this.userInfoSubsriber.unsubscribe();
 	}
 	public onLogoff() {
 		this.breadCrumbService.removeAll();
-		this.authService.Logout();
+		this.store.dispatch(new auth.Logout());
+		// this.authService.Logout();
 	}
 }

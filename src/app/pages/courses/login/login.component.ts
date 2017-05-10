@@ -7,6 +7,10 @@ import { Subscription, Observer } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 import { BreadCrumbService } from '../services/breadcrumb.service';
 import { NgForm } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { State } from './../reducers';
+import * as auth from './../reducers/auth.reducer';
+import * as authActions from './../actions/auth.action';
 
 @Component({
 	selector: 'login',
@@ -22,28 +26,20 @@ export class LoginComponent implements  OnInit, OnDestroy {
 	public isLoadRunnerShow: boolean = false;
 	public errorMessage: string;
 	private loadRunnerServiceSubscriber: Subscription;
+	private stateSubscriber: Subscription;
 
 	constructor(
-		private authService: AuthService,
+		// private authService: AuthService,
 		private loadRunnerService: LoadRunnerService,
 		private cdRef: ChangeDetectorRef,
 		private router: Router,
-		private breadCrumbService: BreadCrumbService) {
+		private breadCrumbService: BreadCrumbService,
+		private store: Store<State>) {
 	}
 
 	public onLogin() {
 		this.loadRunnerService.Show();
-		this.authService.Login(this.userName, this.userPass).subscribe((data) => {
-			if (data) {
-				this.loadRunnerService.Hide();
-				this.router.navigate(['/courses']);
-			}
-		},
-		(err: Response) => {
-			this.loadRunnerService.Hide();
-			this.errorMessage = err.text();
-			console.log(this.errorMessage);
-		});
+		this.store.dispatch(new authActions.Login({login: this.userName, password: this.userPass}));
 	}
 
 	public ngOnInit() {
@@ -51,8 +47,20 @@ export class LoginComponent implements  OnInit, OnDestroy {
 			this.isLoadRunnerShow = data;
 			this.cdRef.markForCheck();
 		} );
+		this.stateSubscriber = this.store.select((state: State) => state.auth)
+		.subscribe((stateAuth) => {
+			this.loadRunnerService.Hide();
+			if (stateAuth.authUser) {
+				this.router.navigate(['/courses']);
+			}
+			if (stateAuth.error) {
+				this.errorMessage = stateAuth.error;
+				this.cdRef.markForCheck();
+			}
+		});
 	}
 	public ngOnDestroy() {
 		this.loadRunnerServiceSubscriber.unsubscribe();
+		this.stateSubscriber.unsubscribe();
 	}
 }

@@ -14,6 +14,9 @@ export function reducer(state: State = {} as any, action: course.Actions): State
 				return {courses: action.payload};
 			}
 		}
+		case course.FOUND_COURSES_COMPLETE: {
+			return {courses: action.payload};
+		}
 		default: return state;
 	}
 }

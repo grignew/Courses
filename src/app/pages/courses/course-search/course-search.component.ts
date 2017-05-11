@@ -4,6 +4,10 @@ import { CourseFilterPipe } from '../pipes/course.filter.pipe';
 import { Observable, Observer, Subject } from 'rxjs/Rx';
 import { CourseService } from '../services/course.maintain.service';
 import { Course } from './../models';
+import { Store } from '@ngrx/store';
+import { State } from './../reducers';
+import * as course from './../reducers/course.reducer';
+import * as courseAction from './../actions/course.action';
 
 @Component({
 	selector: 'course-search',
@@ -17,13 +21,17 @@ export class CourseSearchComponent {
 	public findCourse: string;
 	private courseFilter = new CourseFilterPipe();
 
-	constructor(private courseService: CourseService) {
+	constructor(
+		private courseService: CourseService,
+		private store: Store<State>
+		) {
 	}
 
 	public onSearch() {
 		this.courseService.filterString = this.findCourse;
-		this.courseService.filterCourses(this.findCourse);
-		console.log('onSearch = ' + this.findCourse);
+		this.store.dispatch(new courseAction.FindCourses());
+		// this.courseService.filterCourses(this.findCourse);
+		// console.log('onSearch = ' + this.findCourse);
 	}
 
 	public runOnEmpty() {

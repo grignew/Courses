@@ -30,7 +30,6 @@ export class CourseService {
 		let options = {
 			search: param
 		};
-		console.log(`filter test ${this.filterString}`);
 		return this.http.get(`${this.urlServer}/courses`, options)
 		.map((req) => req.json())
 		.map((courses) => courses.map((course) => new Course(course)));
@@ -71,7 +70,6 @@ export class CourseService {
 		return this.filteredCourses;
 	}
 	public filterCourses(filterString: string) {
-		console.log('method filterCourses = ' + filterString);
 		this.startCourses = 0;
 		this.getList().subscribe((courses) => this.filteredCourses.next(courses));
 	}

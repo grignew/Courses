@@ -49,11 +49,11 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 			this.isLoadRunnerShow = data;
 			this.cdRef.markForCheck();
 		});
-		this.courseServiceFilterSubscriber = this.courseService.getFilterCourses.subscribe((data) => {
-			// console.log(data);
-			//this.courseList = data;
-			this.cdRef.markForCheck();
-		});
+		// this.courseServiceFilterSubscriber = this.courseService.getFilterCourses.subscribe((data) => {
+		// 	// console.log(data);
+		// 	//this.courseList = data;
+		// 	this.cdRef.markForCheck();
+		// });
 		this.courseServiceGetListSubscriber = this.store.select((state: State) => state.course)
 		.map((coursesState) => coursesState.courses)
 		.subscribe((courses) => {

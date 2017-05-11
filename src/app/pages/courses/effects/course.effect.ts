@@ -17,13 +17,15 @@ export class CourseEffect {
 				.map((courses) => new course.CoursesComplete(courses));
 		});
 
-	// @Effect()
-	// public logout$: Observable<Action> = this.actions$
-	// 	.ofType(auth.LOGOUT)
-	// 	.switchMap(() => {
-	// 		this.authService.Logout();
-	// 		return Observable.of(new auth.LogoutComplete());
-	// 	});
+	@Effect()
+	public findCourses$: Observable<Action> = this.actions$
+		.ofType(course.FIND_COURSES)
+		.map(toPayload)
+		.switchMap(() => {
+			this.courseService.startCourses = 0;
+			return this.courseService.getList()
+				.map((courses) => new course.FoundCoursesComplete(courses));
+		});
 
 	constructor(private actions$: Actions, private courseService: CourseService) {}
 }

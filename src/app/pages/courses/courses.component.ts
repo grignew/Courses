@@ -7,6 +7,10 @@ import { AuthService } from './services/auth.service';
 import { LoadRunnerService } from './services/loadrunner.service';
 import { CourseSearchComponent } from './course-search/course-search.component';
 import { BreadCrumbService } from './services/breadcrumb.service';
+import { Store } from '@ngrx/store';
+import { State } from './reducers';
+import * as course from './reducers/course.reducer';
+import * as courseAction from './actions/course.action';
 
 @Component({
 	selector: 'courses',
@@ -29,11 +33,11 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	constructor(
 				private courseService: CourseService,
 				// private authService: AuthService,
+				private store: Store<State>,
 				private loadRunnerService: LoadRunnerService,
 				private cdRef: ChangeDetectorRef,
 				private breadCrumbService: BreadCrumbService
 				) {
-		// console.log('Courses constructor');
 	}
 
 	public ngOnInit() {
@@ -47,19 +51,26 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 		});
 		this.courseServiceFilterSubscriber = this.courseService.getFilterCourses.subscribe((data) => {
 			// console.log(data);
-			this.courseList = data;
+			//this.courseList = data;
+			this.cdRef.markForCheck();
+		});
+		this.courseServiceGetListSubscriber = this.store.select((state: State) => state.course)
+		.map((coursesState) => coursesState.courses)
+		.subscribe((courses) => {
+			this.courseList = courses;
 			this.cdRef.markForCheck();
 		});
 	}
 
 	public onAddMore() {
 		this.courseService.startCourses += this.courseService.countCourses;
-		this.courseServiceGetListSubscriber = this.courseService.getList()
-		.subscribe((data: Course[]) => {
-			this.courseService.courseList = data;
-			this.courseList = this.courseList.concat(data);
-			this.cdRef.markForCheck();
-		});
+		this.store.dispatch(new courseAction.Courses());
+		// this.courseServiceGetListSubscriber = this.courseService.getList()
+		// .subscribe((data: Course[]) => {
+		// 	this.courseService.courseList = data;
+		// 	this.courseList = this.courseList.concat(data);
+		// 	this.cdRef.markForCheck();
+		// });
 	}
 	public onDeleteCourse(course: Course) {
 		// console.log(`Delete Course ${course.name}!`);

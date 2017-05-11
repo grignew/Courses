@@ -13,9 +13,11 @@ import { routes } from './courses.routes';
 
 // effects
 import { AuthEffect } from './effects/auth.effect';
+import { CourseEffect } from './effects/course.effect';
 
-//reducers
+// reducers
 import { reducer } from './reducers';
+
 // custom components
 import { CoursesComponent } from './courses.component';
 import { LogoComponent } from './logo/logo.component';
@@ -83,7 +85,8 @@ import { CourseFilterPipe } from './pipes/course.filter.pipe';
 		HttpModule,
 		StoreModule.provideStore(reducer),
 		StoreDevtoolsModule.instrumentOnlyWithExtension(),
-		EffectsModule.run(AuthEffect)
+		EffectsModule.run(AuthEffect),
+		EffectsModule.run(CourseEffect)
 	],
 	providers: [CourseService, AuthService, LoadRunnerService,
 		BreadCrumbService, AuthorizedHttp, AuthorsService, CanActivateGuard]

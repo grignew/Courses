@@ -6,6 +6,7 @@ import { Authors } from './../models';
 	selector: '[validateAuthors]',
 	providers: [{
 		provide: NG_VALIDATORS,
+		// tslint:disable-next-line:no-forward-ref
 		useExisting: forwardRef(() => AuthorsValidatorDirective),
 		multi: true
 		}]

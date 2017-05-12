@@ -5,6 +5,7 @@ import { NG_VALIDATORS, FormControl, Validator, AbstractControl } from '@angular
 	selector: '[validateDuration]',
 	providers: [{
 		provide: NG_VALIDATORS,
+		// tslint:disable-next-line:no-forward-ref
 		useExisting: forwardRef(() => DurationValidatorDirective),
 		multi: true
 		}]

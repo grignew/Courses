@@ -4,18 +4,20 @@ import moment from 'moment';
 
 const CUSTOM_COURSE_DATE_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
+	// tslint:disable-next-line:no-forward-ref
 	useExisting: forwardRef(() => CourseDateComponent),
 	multi: true
 };
 
 @Component({
 	selector: 'course-date',
+	// tslint:disable-next-line:max-line-length
 	template: '<input type="text" placeholder="DD/MM/YYYY" class="form-control" [value]="humanDate" (change)="setValue($event)">',
 	providers: [CUSTOM_COURSE_DATE_ACCESSOR]
 })
 export class CourseDateComponent implements ControlValueAccessor {
 	public date: Date;
-	public humanDate: string;
+	public humanDate: string = '';
 	constructor() {
 	}
 	public setValue(item) {
@@ -36,8 +38,10 @@ export class CourseDateComponent implements ControlValueAccessor {
 	}
 
 	public writeValue(value: any) {
-		this.date = value; //  ? moment(value).format('DD/MM/YYYY') : '';
-		this.humanDate = moment(this.date).format('DD/MM/YYYY');
+		this.date = value;
+		if (this.date) {
+			this.humanDate = moment(this.date).format('DD/MM/YYYY');
+		}
 	}
 
 	private onChange = (_) => {};

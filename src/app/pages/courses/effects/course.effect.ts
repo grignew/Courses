@@ -27,5 +27,47 @@ export class CourseEffect {
 				.map((courses) => new course.FoundCoursesComplete(courses));
 		});
 
+	@Effect()
+	public deleteCourse$: Observable<Action> = this.actions$
+		.ofType(course.DELETE_COURSE)
+		.map(toPayload)
+		.switchMap((id: number) => {
+			return this.courseService.removeItem(id)
+				.switchMap(() => {
+					this.courseService.startCourses = 0;
+					return this.courseService.getList();
+				})
+				.map((courses) => new course.FoundCoursesComplete(courses));
+		});
+
+	@Effect()
+	public updateCourse$: Observable<Action> = this.actions$
+		.ofType(course.UPDATE_COURSE)
+		.map(toPayload)
+		.switchMap((curCourse) => {
+			return this.courseService.updateItem(curCourse)
+				.map(() => new course.ChangeCourseComplete());
+		});
+
+	@Effect()
+	public addCourse$: Observable<Action> = this.actions$
+		.ofType(course.ADD_COURSE)
+		.map(toPayload)
+		.switchMap((curCourse) => {
+			return this.courseService.addItem(curCourse)
+				.map(() => new course.ChangeCourseComplete());
+		});
+
+	@Effect()
+	public getCourse$: Observable<Action> = this.actions$
+	.ofType(course.GET_COURSE)
+	.map(toPayload)
+	.switchMap((id: number) => {
+		return this.courseService.GetItem(id)
+			.map((curCourse) => {
+				console.log('effect curcourse=', curCourse);
+				return new course.GetCourseComplete(curCourse);
+			});
+	});
 	constructor(private actions$: Actions, private courseService: CourseService) {}
 }

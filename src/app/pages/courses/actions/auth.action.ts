@@ -38,4 +38,3 @@ export class LogoutComplete implements Action {
 }
 
 export type Actions = Login | Logout | LoginComplete | LoginFail | LogoutComplete;
-

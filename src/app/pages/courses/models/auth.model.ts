@@ -15,4 +15,3 @@ export class AuthUser {
 		this.password = obj.password;
 	}
 }
-

@@ -3,6 +3,7 @@ import * as course from './../actions/course.action';
 
 export interface State {
 	courses: Course[];
+	curCourse?: Course;
 }
 
 export function reducer(state: State = {} as any, action: course.Actions): State {
@@ -16,6 +17,12 @@ export function reducer(state: State = {} as any, action: course.Actions): State
 		}
 		case course.FOUND_COURSES_COMPLETE: {
 			return {courses: action.payload};
+		}
+		case course.CHANGE_COMPLETE: {
+			return {courses: undefined};
+		}
+		case course.GET_COURSE_COMPLETE: {
+			return {courses: state.courses, curCourse: action.payload};
 		}
 		default: return state;
 	}

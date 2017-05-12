@@ -13,7 +13,6 @@ export class CanActivateGuard implements CanActivate {
 	}
 
 	public canActivate() {
-		// console.log('this.authService.IsAuthenticated=', this.authService.IsAuthenticated());
 		return this.store.select((state) => state.auth).first()
 		.map((authUser) => {
 			if (!authUser.authUser) {
@@ -22,6 +21,7 @@ export class CanActivateGuard implements CanActivate {
 			}
 			return true;
 		});
+
 		// if (!this.authService.IsAuthenticated()) {
 		// 	this.router.navigateByUrl('/login');
 		// 	return false;

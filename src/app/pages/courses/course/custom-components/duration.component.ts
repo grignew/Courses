@@ -4,12 +4,14 @@ import moment from 'moment';
 
 const CUSTOM_COURSE_DURATION_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
+	// tslint:disable-next-line:no-forward-ref
 	useExisting: forwardRef(() => CourseDurationComponent),
 	multi: true
 };
 
 @Component({
 	selector: 'course-duration',
+	// tslint:disable-next-line:max-line-length
 	template: '<input type="number" placeholder="MMM" class="form-control" [value]="duration" (input)="setValue($event)">',
 	providers: [CUSTOM_COURSE_DURATION_ACCESSOR]
 })

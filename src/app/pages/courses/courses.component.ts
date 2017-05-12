@@ -9,7 +9,6 @@ import { CourseSearchComponent } from './course-search/course-search.component';
 import { BreadCrumbService } from './services/breadcrumb.service';
 import { Store } from '@ngrx/store';
 import { State } from './reducers';
-import * as course from './reducers/course.reducer';
 import * as courseAction from './actions/course.action';
 
 @Component({
@@ -26,7 +25,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	public courseList: Course[] = [];
 	private deleteCourse: Course;
 	private loadRunnerServiceSubscriber: Subscription;
-	private courseServiceFilterSubscriber: Subscription;
+	// private courseServiceFilterSubscriber: Subscription;
 	private courseServiceGetListSubscriber: Subscription;
 	private breadCrumbItem: BreadCrumb = {name: 'Courses', path: '/courses'};
 
@@ -41,7 +40,6 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	}
 
 	public ngOnInit() {
-		// console.log('Courses init');
 		this.courseService.startCourses = 0;
 		this.courseService.filterString = '';
 		this.onAddMore();
@@ -59,6 +57,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 		.subscribe((courses) => {
 			this.courseList = courses;
 			this.cdRef.markForCheck();
+			this.loadRunnerService.Hide();
 		});
 	}
 
@@ -73,7 +72,6 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 		// });
 	}
 	public onDeleteCourse(course: Course) {
-		// console.log(`Delete Course ${course.name}!`);
 		this.deleteCourse = course;
 		this.isShownDeleteConfirmation = true;
 	}
@@ -81,12 +79,13 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	public onDeleteConfirmationCourse(isConfirmDelete: boolean) {
 		if (isConfirmDelete) {
 			this.loadRunnerService.Show();
-			this.courseService.removeItem(this.deleteCourse.id)
-							.subscribe((data) => {if (data) {
-								this.loadRunnerService.Hide();
-								this.courseService.filterCourses('');
-								}
-							});
+			this.store.dispatch(new courseAction.DeleteCourse(this.deleteCourse.id));
+			// this.courseService.removeItem(this.deleteCourse.id)
+			// 				.subscribe((data) => {if (data) {
+			// 					this.loadRunnerService.Hide();
+			// 					this.courseService.filterCourses('');
+			// 					}
+			// 				});
 		}
 		this.isShownDeleteConfirmation = false;
 	}
@@ -94,7 +93,7 @@ export class CoursesComponent implements OnInit, OnDestroy, AfterViewInit {
 	public ngOnDestroy() {
 		// unsubscribe here
 		this.loadRunnerServiceSubscriber.unsubscribe();
-		this.courseServiceFilterSubscriber.unsubscribe();
+		// this.courseServiceFilterSubscriber.unsubscribe();
 		this.courseServiceGetListSubscriber.unsubscribe();
 		// console.log('ngOnDestroy');
 	}

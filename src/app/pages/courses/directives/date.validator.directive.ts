@@ -6,6 +6,7 @@ import moment from 'moment';
 	selector: '[validateDate]',
 	providers: [{
 		provide: NG_VALIDATORS,
+		// tslint:disable-next-line:no-forward-ref
 		useExisting: forwardRef(() => DateValidatorDirective),
 		multi: true
 		}]

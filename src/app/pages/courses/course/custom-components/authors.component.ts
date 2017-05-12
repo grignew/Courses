@@ -6,6 +6,7 @@ import { Subscription, Observer } from 'rxjs/Rx';
 
 const CUSTOM_COURSE_AUTHORS_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
+	// tslint:disable-next-line:no-forward-ref
 	useExisting: forwardRef(() => CourseAuthorsComponent),
 	multi: true
 };

@@ -133,7 +133,11 @@ module.exports = function (options) {
           loader: ['to-string-loader', 'css-loader'],
           exclude: [helpers.root('src/index.html')]
         },
-
+        {
+          test: /\.scss$/,
+          use: ['to-string-loader', 'css-loader', 'sass-loader'],
+          exclude: [helpers.root('src', 'styles')]
+        },
         /**
          * Raw loader support for *.html
          * Returns file content as string

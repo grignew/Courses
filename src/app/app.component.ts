@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
 			// console.log(`${((Date.now() - this.timeDif) % 3600) / 60 / 60}sek`);
 		});
 		this.ngZone.onUnstable.subscribe(() => {
-			this.timeDif = Date.now();
+			// this.timeDif = Date.now();
 		});
 	}
 

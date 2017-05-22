@@ -1,6 +1,6 @@
-import { Directive, forwardRef } from '@angular/core';
+import { Directive, forwardRef, Inject } from '@angular/core';
 import { NG_VALIDATORS, FormControl, Validator, AbstractControl } from '@angular/forms';
-import moment from 'moment';
+//  import moment from 'moment';
 
 @Directive({
 	selector: '[validateDate]',
@@ -14,8 +14,11 @@ import moment from 'moment';
 
 export class DateValidatorDirective implements Validator {
 
+	public constructor(@Inject('moment') private moment) {
+
+	}
 	public validate(c: FormControl): {[key: string]: boolean} {
-		return moment(c.value).isValid() ?
+		return this.moment(c.value).isValid() ?
 			null :
 			{ invalidDate: true };
 	}

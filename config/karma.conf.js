@@ -6,7 +6,7 @@ module.exports = function (config) {
   var testWebpackConfig = require('./webpack.test.js')({ env: 'test' });
 
   var configuration = {
-
+   
     // base path that will be used to resolve all patterns (e.g. files, exclude)
     basePath: '',
 
@@ -16,10 +16,8 @@ module.exports = function (config) {
      * available frameworks: https://npmjs.org/browse/keyword/karma-adapter
      */
     frameworks: ['jasmine'],
-
     // list of files to exclude
     exclude: [],
-
     client: {
       captureConsole: false
     },
@@ -90,10 +88,10 @@ module.exports = function (config) {
      * level of logging
      * possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
      */
-    logLevel: config.LOG_WARN,
+    logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
     /*
      * start these browsers
@@ -114,7 +112,7 @@ module.exports = function (config) {
      * Continuous Integration mode
      * if true, Karma captures browsers, runs the tests and exits
      */
-    singleRun: true
+    singleRun: false
   };
 
   if (process.env.TRAVIS) {

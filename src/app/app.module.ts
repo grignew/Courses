@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import * as moment from 'moment';
 import {
 	NgModule,
 	ApplicationRef
@@ -54,7 +55,8 @@ const APP_PROVIDERS = [
 	],
 	providers: [ // expose our Services and Providers into Angular's dependency injection
 		ENV_PROVIDERS,
-		APP_PROVIDERS
+		APP_PROVIDERS,
+		{ provide: 'moment', useValue: moment }
 	]
 })
 export class AppModule {

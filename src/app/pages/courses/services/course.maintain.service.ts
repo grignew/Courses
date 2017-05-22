@@ -6,6 +6,7 @@ import { CourseFilterPipe } from '../pipes/course.filter.pipe';
 import { Http, Request, RequestOptions, Headers, Response } from '@angular/http';
 import { URLSearchParams, RequestMethod } from '@angular/http';
 import { AuthorizedHttp } from './authorizedhttp.service';
+import * as moment from 'moment';
 
 @Injectable()
 export class CourseService {
@@ -14,7 +15,7 @@ export class CourseService {
 	public countCourses: number = 2;
 	public startCourses: number = 0;
 	private filteredCourses: Subject<Course[]> = new Subject();
-	private courseFilter = new CourseFilterPipe();
+	private courseFilter = new CourseFilterPipe(moment);
 	private urlServer = 'http://localhost:3004';
 	private amountCourses: number;
 

@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { State } from './../reducers';
 import * as course from './../reducers/course.reducer';
 import * as courseAction from './../actions/course.action';
+import * as moment from 'moment';
 
 @Component({
 	selector: 'course-search',
@@ -19,7 +20,7 @@ import * as courseAction from './../actions/course.action';
 })
 export class CourseSearchComponent {
 	public findCourse: string;
-	private courseFilter = new CourseFilterPipe();
+	private courseFilter = new CourseFilterPipe(moment);
 
 	constructor(
 		private courseService: CourseService,

@@ -16,7 +16,7 @@ export class Course {
 		this.duration = obj.duration;
 		this.date = obj.date;
 		this.topRated = obj.topRated;
-		console.dir(obj.authors);
+		// console.dir(obj.authors);
 		this.authors = obj.authors; // .map((authors) => authors.map((author) => new Authors(author)));
 	}
 }

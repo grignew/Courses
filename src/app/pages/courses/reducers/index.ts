@@ -7,12 +7,12 @@ export interface State {
 	course: course.State;
 }
 
-const reducers = {
+export const reducers = {
 	auth: auth.reducer,
 	course: course.reducer
 };
 
-const prodReducer: ActionReducer<State> = combineReducers(reducers);
+export const prodReducer: ActionReducer<State> = combineReducers(reducers);
 
 export function reducer(state: any, action: any) {
 	return prodReducer(state, action);

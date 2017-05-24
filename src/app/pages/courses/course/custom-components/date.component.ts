@@ -1,6 +1,6 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, Input, forwardRef, Inject } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import moment from 'moment';
+// import moment from 'moment';
 
 const CUSTOM_COURSE_DATE_ACCESSOR = {
 	provide: NG_VALUE_ACCESSOR,
@@ -18,12 +18,12 @@ const CUSTOM_COURSE_DATE_ACCESSOR = {
 export class CourseDateComponent implements ControlValueAccessor {
 	public date: Date;
 	public humanDate: string = '';
-	constructor() {
+	constructor(@Inject('moment') private moment) {
 	}
 	public setValue(item) {
 		let DATE_REGEXP = new RegExp('\\d{2,2}\/\\d{2,2}\/\\d{4,4}');
 		if (DATE_REGEXP.test(item.target.value)) {
-				this.onChange(moment(item.target.value, 'DD/MM/YYYY').toDate());
+				this.onChange(this.moment(item.target.value, 'DD/MM/YYYY').toDate());
 		}else {
 			this.onChange(null);
 		}
@@ -40,7 +40,7 @@ export class CourseDateComponent implements ControlValueAccessor {
 	public writeValue(value: any) {
 		this.date = value;
 		if (this.date) {
-			this.humanDate = moment(this.date).format('DD/MM/YYYY');
+			this.humanDate = this.moment(this.date).format('DD/MM/YYYY');
 		}
 	}
 

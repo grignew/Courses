@@ -49,7 +49,7 @@ export class CourseAuthorsComponent implements OnInit, OnDestroy, ControlValueAc
 			this.courseAuthors.splice(
 				this.courseAuthors.findIndex((authorin) => authorin.id === author.id), 1);
 		}
-		console.dir(this.courseAuthors);
+		// console.dir(this.courseAuthors);
 		this.onChange(this.courseAuthors);
 		this.onTouched();
 	}
@@ -74,7 +74,7 @@ export class CourseAuthorsComponent implements OnInit, OnDestroy, ControlValueAc
 		this.subscrAuthorsService = this.authorsServices.getList().subscribe(
 			(authors) => {
 				this.authors = authors;
-				console.dir(this.authors);
+				// console.dir(this.authors);
 			}
 		);
 	}
